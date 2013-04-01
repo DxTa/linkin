@@ -25,7 +25,7 @@ Setup
 
   For unix-line command
   > cd #{PROJECT}<br/>
-  > mkdir app/tmp/{cache,logs,sessions,tests} && mkdir -p app/tmp/cache/{models,persistent,views}<br/>
+  > mkdir -p app/tmp/{cache,logs,sessions,tests} && mkdir -p app/tmp/cache/{models,persistent,views}<br/>
 
   ensure app/tmp is writable
 
@@ -33,7 +33,7 @@ Setup
 
 Note
 ====
-chỉ push lên branch master<br/>
+chỉ push lên branch sub<br/>
 trong quá trình cài đặt mà gặp lỗi gì thì google sửa nhé, hoặc liên hệ với giang hồ.
 
 Coding
