@@ -37,7 +37,7 @@ class User extends AppModel {
 		),
 		'username' => array(
 			'minlength' => array(
-				'rule' => array('minlength'),
+				'rule' => array('minlength',2),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

@@ -8,23 +8,13 @@ class AppSchema extends CakeSchema {
 	public function after($event = array()) {
 	}
 
-	public $cake_sessions = array(
-		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'primary', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'data' => array('type' => 'text', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'expires' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
-	);
-
   public $users = array(
 		'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
 		'email' => array('type' => 'text', 'null' => false, 'default' => null),
 		'username' => array('type' => 'text', 'null' => false, 'default' => null),
 		'sex' => array('type' => 'text', 'null' => true, 'default' => null),
     'dob' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'pwd' => array('type' => 'text', 'null' => false, 'default' => null),
+    'password' => array('type' => 'text', 'null' => false, 'default' => null),
     'avatar' => array('type' => 'integer', 'null' => false),
     'remember_token' => array('type' => 'text', 'null' => false, 'default' => null),
     'active' => array('type' => 'boolean', 'length' => 1, 'null' => false, 'default' => 0),

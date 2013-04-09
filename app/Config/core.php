@@ -184,10 +184,10 @@
  * the cake shell command: cake schema create Sessions
  *
  */
-	// Configure::write('Session', array(
-		// 'defaults' => 'php'
-	// ));
-  Configure::write('Session.save', 'database');
+  Configure::write('Session', array(
+    'defaults' => 'php'
+  ));
+  // Configure::write('Session.save', 'database');
 
 /**
  * A random string used in security hashing methods.
