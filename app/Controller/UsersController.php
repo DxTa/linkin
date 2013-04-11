@@ -9,12 +9,12 @@ class UsersController extends AppController {
   var $name = 'Users';
 
   function beforeFilter() {
-    $this->Auth->fields = array(
-      'username' => 'username',
-      'password' => 'secretword'
-    );
+    parent::beforeFilter();
+    Security::setHash('md5');
     $this->Auth->allow('delete');
     $this->Auth->allow('register');
+    $this->Auth->allow('login');
+    // $this->Auth->autoRedirect = false;
   }
 
   function isAuthorized() {
@@ -23,11 +23,25 @@ class UsersController extends AppController {
     }
   }
 
+  public function beforeSave() {
+    if (isset($this->data[$this->alias]['password'])) {
+      $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+    }
+    return true;
+  }
+
   /**
    *  The AuthComponent provides the needed functionality
    *  for login, so you can leave this function blank.
    */
   function login() {
+    if ($this->request->is('post')) {
+      if ($this->Auth->login()) {
+        $this->redirect($this->Auth->redirect());
+      } else {
+        $this->Session->setFlash(__('Invalid username or password, try again'));
+      }
+    }
   }
 
   function logout() {
@@ -35,14 +49,13 @@ class UsersController extends AppController {
   }
 
   function register() {
-    if(!empty($this->data)) {
+    if ($this->request->is('post')) {
       $this->User->create();
-      // $assigned_password = 'password';
-      // $this->data['User']['password'] = $assigned_password;
-      if($this->User->save($this->data)) {
-        // send signup email containing password to the user
-        $this->Auth->login($this->data);
-        $this->redirect('home');
+      if ($this->User->save($this->request->data)) {
+        $this->Session->setFlash(__('The user has been saved'));
+        $this->redirect(array('action' => 'login'));
+      } else {
+        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
       }
     }
   }

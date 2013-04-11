@@ -33,7 +33,17 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
   // public $components = array('DebugKit.Toolbar');
-  public $components = array('Auth', 'Session');
+  public $components = array(
+    'Session',
+    'Auth' => array(
+      'loginRedirect' => array('controller' => 'users', 'action' => 'home'),
+      'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+    )
+  );
+  public function beforeFilter() {
+    $this->Auth->allow('index', 'view');
+  }
+
   public function current_user() {
     return $this->Auth->user();;
   }
