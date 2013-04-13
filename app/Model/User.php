@@ -17,38 +17,50 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'email';
-	public $primary_key = 'user_id';
-	public $sequence = 'core_user_id_seq';
+	// public $displayField = 'email';
+	// public $primary_key = 'user_id';
+	// public $sequence = 'core_user_id_seq';
 
 /**
  * Validation rules
  *
  * @var array
  */
-	public $validate = array(
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'username' => array(
-			'minlength' => array(
-				'rule' => array('minlength',2),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+  public $validate = array(
+    'email' => array(
+      'email' => array(
+        'rule' => array('email'),
+        //'message' => 'Your custom message here',
+        //'allowEmpty' => false,
+        //'required' => false,
+        //'last' => false, // Stop validation after this rule
+        //'on' => 'create', // Limit validation to 'create' or 'update' operations
+      ),
+      'required' => array(
+        'rule' => array('notEmpty'),
+        'message' => 'An email is required'
+      ),
+      'unique' => array(
+        'rule' => 'isUnique',
+        'required' => 'create'
+      ),
+    ),
+    'username' => array(
+      'minlength' => array(
+        'rule' => array('minlength',2),
+        //'message' => 'Your custom message here',
+        //'allowEmpty' => false,
+        //'required' => false,
+        //'last' => false, // Stop validation after this rule
+        //'on' => 'create', // Limit validation to 'create' or 'update' operations
+      ),
       'required' => array(
         'rule' => array('notEmpty'),
         'message' => 'A username is required'
+      ),
+      'unique' => array(
+        'rule' => 'isUnique',
+        'required' => 'create'
       ),
     ),
     'password' => array(
@@ -64,6 +76,8 @@ class User extends AppModel {
     if (isset($this->data[$this->alias]['password'])) {
       $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
     }
+    // generate sha1 token to verify email
+    $this->data[$this->alias]['remember_token'] = sha1($this->data['User']['username'].rand(0,100));
     return true;
   }
 
@@ -94,55 +108,55 @@ class User extends AppModel {
     'Authentication' => array(
       'className' => 'Authentication',
       'foreignKey' => 'user_id',
-      'dependent' => false,
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'exclusive' => '',
-      'finderQuery' => '',
-      'counterQuery' => ''
+      'dependent' => true,
+      // 'conditions' => '',
+      // 'fields' => '',
+      // 'order' => '',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
     ),
     'Comment' => array(
       'className' => 'Comment',
       'foreignKey' => 'user_id',
-      'dependent' => false,
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'exclusive' => '',
-      'finderQuery' => '',
-      'counterQuery' => ''
+      'dependent' => true,
+      // 'conditions' => '',
+      // 'fields' => '',
+      'order' => 'Comment.created_at DESC',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
     ),
-    'Like' => array(
-      'className' => 'Like',
+    'UserLinkLike' => array(
+      'className' => 'UserLinkLike',
       'foreignKey' => 'user_id',
       'dependent' => false,
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'exclusive' => '',
-      'finderQuery' => '',
-      'counterQuery' => ''
+      // 'conditions' => '',
+      // 'fields' => '',
+      'order' => 'UserLinkLike.created_at DESC',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
     ),
-    'View' => array(
-      'className' => 'View',
+    'UserLinkView' => array(
+      'className' => 'UserLinkView',
       'foreignKey' => 'user_id',
       'dependent' => false,
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'exclusive' => '',
-      'finderQuery' => '',
-      'counterQuery' => ''
-    )
+      // 'conditions' => '',
+      // 'fields' => '',
+      'order' => 'UserLinkView.created_at DESC',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
+    ),
   );
 
 
@@ -158,14 +172,14 @@ class User extends AppModel {
       'foreignKey' => 'user_id',
       'associationForeignKey' => 'friend_id',
       'unique' => 'keepExisting',
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'finderQuery' => '',
-      'deleteQuery' => '',
-      'insertQuery' => ''
+      // 'conditions' => '',
+      // 'fields' => '',
+      // 'order' => '',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'finderQuery' => '',
+      // 'deleteQuery' => '',
+      // 'insertQuery' => ''
     ),
     'followedFriends' => array(
       'className' => 'User',
@@ -173,14 +187,14 @@ class User extends AppModel {
       'foreignKey' => 'friend_id',
       'associationForeignKey' => 'user_id',
       'unique' => 'keepExisting',
-      'conditions' => '',
-      'fields' => '',
-      'order' => '',
-      'limit' => '',
-      'offset' => '',
-      'finderQuery' => '',
-      'deleteQuery' => '',
-      'insertQuery' => ''
+      // 'conditions' => '',
+      // 'fields' => '',
+      // 'order' => '',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'finderQuery' => '',
+      // 'deleteQuery' => '',
+      // 'insertQuery' => ''
     )
   );
 

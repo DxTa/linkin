@@ -22,7 +22,7 @@ class Comment extends AppModel {
 	public $validate = array(
 		'description' => array(
 			'minlength' => array(
-				'rule' => array('minlength'),
+				'rule' => array('minlength',2),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -43,9 +43,9 @@ class Comment extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			// 'conditions' => '',
+			// 'fields' => '',
+			// 'order' => ''
 		)
 	);
 }

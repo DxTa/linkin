@@ -75,8 +75,8 @@ class Link extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Like' => array(
-			'className' => 'Like',
+		'UserLinkLike' => array(
+			'className' => 'UserLinkLike',
 			'foreignKey' => 'link_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -88,8 +88,8 @@ class Link extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'View' => array(
-			'className' => 'View',
+		'UserLinkView' => array(
+			'className' => 'UserLinkView',
 			'foreignKey' => 'link_id',
 			'dependent' => false,
 			'conditions' => '',

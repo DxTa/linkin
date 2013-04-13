@@ -6,14 +6,16 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-  var $name = 'Users';
+  public $helpers = array('Html', 'Form');
+  // var $name = 'Users';
 
   function beforeFilter() {
-    parent::beforeFilter();
-    Security::setHash('md5');
+    // parent::beforeFilter();
+    Security::setHash('sha1');
     $this->Auth->allow('delete');
     $this->Auth->allow('register');
     $this->Auth->allow('login');
+    $this->Auth->allow('index');
     // $this->Auth->autoRedirect = false;
   }
 
@@ -21,13 +23,6 @@ class UsersController extends AppController {
     if ($this->Auth->user('admin') != true) {
       $this->Auth->deny('delete');
     }
-  }
-
-  public function beforeSave() {
-    if (isset($this->data[$this->alias]['password'])) {
-      $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-    }
-    return true;
   }
 
   /**
@@ -52,6 +47,17 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       $this->User->create();
       if ($this->User->save($this->request->data)) {
+
+        $last = $this->User->read(null,$this->User->id);
+
+        $Email = new CakeEmail('gmail');
+        $Email->template('verify_email')
+          ->emailFormat('html')
+          ->viewVars(array('remember_token' => $last["User"]["remember_token"]))
+          ->to($last["User"]['email'])
+          ->subject('[Linkin] Verify your email!')
+          ->send();
+
         $this->Session->setFlash(__('The user has been saved'));
         $this->redirect(array('action' => 'login'));
       } else {
@@ -60,7 +66,11 @@ class UsersController extends AppController {
     }
   }
 
-  function home() {
+  public function home() {
 
+  }
+
+  public function index() {
+    $this->set('users', $this->User->find('all'));
   }
 }
