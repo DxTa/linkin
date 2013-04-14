@@ -179,3 +179,4 @@ CakeLog::config('error', array(
 ));
 
 CakePlugin::load('Uploader');
+CakePlugin::load('Composer', array('bootstrap' => true));

@@ -26,6 +26,30 @@ class User extends AppModel {
  *
  * @var array
  */
+  public $actsAs = array(
+    'Uploader.Attachment' => array(
+      'avatar' => array(
+        'nameCallback' => '',
+        'append' => '',
+        'prepend' => '',
+        'uploadDir' => 'app/webroot/uploads/users',
+        'finalPath' => '',
+        'dbColumn' => 'avatar',
+        'metaColumns' => array(),
+        'defaultPath' => '',
+        'overwrite' => false,
+        'stopSave' => false,
+        'allowEmpty' => true,
+      )
+    ),
+    'Uploader.FileValidation' => array(
+      'fileName' => array(
+        'extension' => array('gif', 'jpg', 'png', 'jpeg'),
+        'required'  => true
+      )
+    )
+  );
+
   public $validate = array(
     'email' => array(
       'email' => array(
@@ -65,8 +89,8 @@ class User extends AppModel {
     ),
     'password' => array(
       'required' => array(
-          'rule' => array('notEmpty'),
-          'message' => 'A password is required'
+        'rule' => array('notEmpty'),
+        'message' => 'A password is required'
       )
     ),
   );

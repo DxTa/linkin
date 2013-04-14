@@ -22,6 +22,30 @@ class Link extends AppModel {
  *
  * @var array
  */
+
+  public $actsAs = array(
+    'Uploader.Attachment' => array(
+      'image' => array(
+        'nameCallback' => '',
+        'append' => '',
+        'prepend' => '',
+        'uploadDir' => 'app/webroot/uploads/links',
+        'finalPath' => '',
+        'dbColumn' => 'images',
+        'metaColumns' => array(),
+        'defaultPath' => '',
+        'overwrite' => false,
+        'stopSave' => false,
+        'allowEmpty' => true,
+      )
+    ),
+    'Uploader.FileValidation' => array(
+      'fileName' => array(
+        'extension' => array('gif', 'jpg', 'png', 'jpeg'),
+        'required'  => true
+      )
+    )
+  );
 	public $validate = array(
 		'title' => array(
 			'minlength' => array(

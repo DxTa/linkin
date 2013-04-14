@@ -1,4 +1,7 @@
 <?php
+  App::uses('Inflector', 'Utility');
+  App::import('Vendor', array('file' => 'autoload'));
+  App::uses('AttachmentBehavior', 'Uploader.Model/Behavior');
 /**
  * This is core configuration file.
  *
@@ -32,8 +35,6 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-
-
 	Configure::write('debug', 2);
 
 /**
@@ -286,4 +287,3 @@ Cache::config('_cake_model_', array(
 	'duration' => $duration
 ));
 
-require_once dirname(__DIR__) . '/Vendor/autoload.php';
