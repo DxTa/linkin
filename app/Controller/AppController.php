@@ -35,16 +35,10 @@ class AppController extends Controller {
   public $components = array(
     'Session',
     'Auth' => array(
+      // 'authorize' => array('Controller'), // <- here
       'loginRedirect' => array('controller' => 'users', 'action' => 'home'),
       'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
     ),
     // 'DebugKit.Toolbar'
   );
-  // public function beforeFilter() {
-  // $this->Auth->allow('index', 'view');
-  // }
-
-  // public function current_user() {
-  // return $this->Auth->user();;
-  // }
 }

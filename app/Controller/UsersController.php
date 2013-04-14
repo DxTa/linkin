@@ -7,24 +7,26 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
   public $helpers = array('Html', 'Form');
+  var $defaultSex = array('Undefined' => 'Undefined', 'Male' => 'Male', 'Female' => 'Female', 'Gay' => 'Gay' ,'Lesbian' => 'Lesbian');
   // var $name = 'Users';
 
   function beforeFilter() {
-    // parent::beforeFilter();
+    parent::beforeFilter();
     Security::setHash('sha1');
-    $this->Auth->allow('delete');
     $this->Auth->allow('register');
     $this->Auth->allow('login');
     $this->Auth->allow('index');
     $this->Auth->allow('verify');
+    $this->set('defaultSex', $this->defaultSex);
     // $this->Auth->autoRedirect = false;
   }
 
-  function isAuthorized() {
-    if ($this->Auth->user('admin') != true) {
-      $this->Auth->deny('delete');
-    }
-  }
+  // public function isAuthorized($user) { // SHIT!! redirect nhu *** nen chua dung dc
+    // if ($this->request->params['action'] == 'delete') {
+      // return $user['admin']; //only admin can do
+    // }
+    // return true;
+  // }
 
   /**
    *  The AuthComponent provides the needed functionality
@@ -86,4 +88,60 @@ class UsersController extends AppController {
   function index() {
     $this->set('users', $this->User->find('all'));
   }
+
+  function view($id = null) {
+    if (!$id) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+
+    $user = $this->User->findById($id);
+    if (!$user) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $this->set('user', $user);
+  }
+
+  function edit($id = null) {
+    if (!$id) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+
+    $user = $this->User->findById($id);
+    if (!$user || $user["User"]["id"] != $this->Auth->user('id')) { //check if current_user
+      $this->Session->setFlash('Unable to update this profile.');
+      $this->redirect($this->referer());
+    }
+
+    if ($this->request->is('post') || $this->request->is('put')) {
+      $this->User->id = $id;
+      if ($this->User->save($this->request->data)) {
+        $this->Session->setFlash('User has been updated.');
+        $this->redirect(array('action' => 'index'));
+      } else {
+        $this->Session->setFlash('Unable to update your profile.');
+      }
+    }
+
+    if (!$this->request->data) {
+      $this->request->data = $user;
+    }
+  }
+
+  function delete($id) {
+    // check if admin
+    if ($this->Auth->User('admin') == false) {
+        $this->Session->setFlash('Only admin can delete.');
+        $this->redirect($this->referer());
+    }
+
+    if ($this->request->is('get')) {
+      throw new MethodNotAllowedException();
+    }
+
+    if ($this->User->delete($id)) {
+      $this->Session->setFlash('The user with id: ' . $id . ' has been deleted.');
+      $this->redirect(array('action' => 'index'));
+    }
+  }
+
 }
