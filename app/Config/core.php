@@ -32,6 +32,8 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
+
+
 	Configure::write('debug', 2);
 
 /**
@@ -283,3 +285,5 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+require_once dirname(__DIR__) . '/Vendor/autoload.php';
