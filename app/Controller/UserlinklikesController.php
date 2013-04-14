@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
  * Likes Controller
  *
  */
-class LikesController extends AppController {
+class UserlinklikesController extends AppController {
 
 /**
  * Scaffold

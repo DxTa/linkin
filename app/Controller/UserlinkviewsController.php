@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
  * Views Controller
  *
  */
-class ViewsController extends AppController {
+class UserlinkviewsController extends AppController {
 
 /**
  * Scaffold

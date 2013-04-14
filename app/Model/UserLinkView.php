@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Like Model
+ * View Model
  *
  * @property User $User
  * @property Link $Link
  */
-class Like extends AppModel {
+class UserLinkView extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -20,16 +20,16 @@ class Like extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			// 'conditions' => '',
+			// 'fields' => '',
+			// 'order' => ''
 		),
 		'Link' => array(
 			'className' => 'Link',
 			'foreignKey' => 'link_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			// 'conditions' => '',
+			// 'fields' => '',
+			// 'order' => ''
 		)
 	);
 }
