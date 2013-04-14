@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+define('UPLOAD_DIR', WWW_ROOT . 'uploads/users');
 /**
  * User Model
  *
@@ -29,11 +30,11 @@ class User extends AppModel {
   public $actsAs = array(
     'Uploader.Attachment' => array(
       'avatar' => array(
-        'nameCallback' => '',
+        'nameCallback' => 'formatName',
         'append' => '',
         'prepend' => '',
-        'uploadDir' => 'app/webroot/uploads/users',
-        'finalPath' => '',
+        'uploadDir' => UPLOAD_DIR,
+        'finalPath' => '/app/webroot/uploads/users/',
         'dbColumn' => 'avatar',
         'metaColumns' => array(),
         'defaultPath' => '',
@@ -49,6 +50,10 @@ class User extends AppModel {
       )
     )
   );
+
+  public function formatName($name,$file) {
+    return $name;
+  }
 
   public $validate = array(
     'email' => array(
@@ -95,8 +100,8 @@ class User extends AppModel {
     ),
     'sex' => array(
       'required' => array(
-          'rule' => '/^gay|lesbian|male|female|undefined$/i',
-          'message' => 'Your sex must be male,female,lesbian,gay,undefined'
+        'rule' => '/^gay|lesbian|male|female|undefined$/i',
+        'message' => 'Your sex must be male,female,lesbian,gay,undefined'
       )
     ),
   );
