@@ -16,6 +16,7 @@ class UsersController extends AppController {
     $this->Auth->allow('register');
     $this->Auth->allow('login');
     $this->Auth->allow('index');
+    $this->Auth->allow('verify');
     // $this->Auth->autoRedirect = false;
   }
 
@@ -58,7 +59,7 @@ class UsersController extends AppController {
           ->subject('[Linkin] Verify your email!')
           ->send();
 
-        $this->Session->setFlash(__('The user has been saved'));
+        $this->Session->setFlash(__('The user has been saved. Please verify your email.'));
         $this->redirect(array('action' => 'login'));
       } else {
         $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -66,11 +67,23 @@ class UsersController extends AppController {
     }
   }
 
-  public function home() {
+  function verify() {
+    $user = $this->User->findByRememberToken($this->request->query['remember_token']);
+    if ($user) {
+      $this->User->id = $user["User"]["id"];
+      $this->User->saveField('active',true);
+      $this->Session->setFlash(__('The user has been verified'));
+    }
+    else {
+      $this->Session->setFlash(__('This link does not exist!'));
+    }
+  }
+
+  function home() {
 
   }
 
-  public function index() {
+  function index() {
     $this->set('users', $this->User->find('all'));
   }
 }

@@ -73,11 +73,17 @@ class User extends AppModel {
 
 
   public function beforeSave($options = array()) {
-    if (isset($this->data[$this->alias]['password'])) {
-      $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+    if (!$this->id && !isset($this->data[$this->alias][$this->primaryKey])) {
+      // beforeSave when create new record
+      if (isset($this->data[$this->alias]['password'])) {
+        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+      }
+      // generate sha1 token to verify email
+      $this->data[$this->alias]['remember_token'] = sha1($this->data["User"]["username"].rand(0,100));
     }
-    // generate sha1 token to verify email
-    $this->data[$this->alias]['remember_token'] = sha1($this->data['User']['username'].rand(0,100));
+    else {
+      // beforeSave when update a record
+    }
     return true;
   }
 
