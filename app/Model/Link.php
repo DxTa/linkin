@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+define('UPLOAD_DIR', WWW_ROOT . 'uploads/links');
 /**
  * Link Model
  *
@@ -29,8 +30,8 @@ class Link extends AppModel {
         'nameCallback' => '',
         'append' => '',
         'prepend' => '',
-        'uploadDir' => 'app/webroot/uploads/links',
-        'finalPath' => '',
+        'uploadDir' => UPLOAD_DIR,
+        'finalPath' => '/app/webroot/uploads/links',
         'dbColumn' => 'images',
         'metaColumns' => array(),
         'defaultPath' => '',

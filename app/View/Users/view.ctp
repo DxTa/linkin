@@ -60,4 +60,5 @@
 			<?php echo h($user['User']['updated_at']); ?>
 			&nbsp;
 		</dd>
+    <img src="<?php echo $user['User']['avatar']?>">
 	</dl>
