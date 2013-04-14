@@ -21,13 +21,6 @@ class UsersController extends AppController {
     // $this->Auth->autoRedirect = false;
   }
 
-  // public function isAuthorized($user) { // SHIT!! redirect nhu *** nen chua dung dc
-    // if ($this->request->params['action'] == 'delete') {
-      // return $user['admin']; //only admin can do
-    // }
-    // return true;
-  // }
-
   /**
    *  The AuthComponent provides the needed functionality
    *  for login, so you can leave this function blank.

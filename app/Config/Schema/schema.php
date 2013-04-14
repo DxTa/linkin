@@ -46,6 +46,15 @@ class AppSchema extends CakeSchema {
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
   );
 
+  public $friendship_states = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'friendship_id' => array('type' => 'integer', 'null' => false),
+    'state' => array('type' => 'text', 'null' => false),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
   public $links = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'owner_id' => array('type' => 'integer', 'null' => false),
@@ -57,7 +66,7 @@ class AppSchema extends CakeSchema {
     'cnt_views' => array('type' => 'integer', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
   );
 
   public $images = array(
@@ -78,7 +87,7 @@ class AppSchema extends CakeSchema {
     'description' => array('type' => 'text', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
   );
 
   public $user_link_likes = array(
@@ -88,9 +97,9 @@ class AppSchema extends CakeSchema {
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1),
-                       'USER_LINK_LIKE_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
-                      )
-  );
+    'USER_LINK_LIKE_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
+  )
+);
 
   public $user_link_views = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
@@ -99,8 +108,8 @@ class AppSchema extends CakeSchema {
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1),
-                      'USER_LINK_VIEW_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
-                      )
-  );
+    'USER_LINK_VIEW_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
+  )
+);
 
 }
