@@ -41,10 +41,10 @@ class AppController extends Controller {
     // 'DebugKit.Toolbar'
   );
   // public function beforeFilter() {
-    // $this->Auth->allow('index', 'view');
+  // $this->Auth->allow('index', 'view');
   // }
 
   // public function current_user() {
-    // return $this->Auth->user();;
+  // return $this->Auth->user();;
   // }
 }

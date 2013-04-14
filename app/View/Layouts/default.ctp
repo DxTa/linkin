@@ -28,7 +28,12 @@
 	<?php
     echo $this->Html->meta('icon');
 
-		echo $this->Html->css('layout');
+    echo $this->Html->css('layout');
+    echo $this->Html->css('bootstrap.min');
+    echo $this->Html->css('bootstrap-responsive.min');
+    // echo $this->Html->css('core');
+    echo $this->Html->script('jquery');
+    echo $this->Html->script('bootstrap.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,7 +43,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo 'Linkin' ?></h1>
+      <?php echo $this->element('menu/header'); ?>
 		</div>
 		<div id="content">
 
@@ -47,9 +52,9 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo 'Footer is here' ?>
+      <?php echo $this->element('menu/footer'); ?>
 		</div>
 	</div>
-	<?php //echo $this->element('sql_dump'); ?>
+  <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
