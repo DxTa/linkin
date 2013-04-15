@@ -47,6 +47,7 @@ class AppController extends Controller {
   }
 
   public function isAuthorized($user) {
-    return $user['active'];
+    // return $user['active'];
+    return true;
   }
 }

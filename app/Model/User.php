@@ -1,6 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
-define('UPLOAD_DIR', WWW_ROOT . 'uploads/users');
+define('UPLOAD_DIR_USER', WWW_ROOT . 'uploads/users');
 /**
  * User Model
  *
@@ -33,7 +33,7 @@ class User extends AppModel {
         'nameCallback' => 'formatName',
         'append' => '',
         'prepend' => '',
-        'uploadDir' => UPLOAD_DIR,
+        'uploadDir' => UPLOAD_DIR_USER,
         'finalPath' => '/app/webroot/uploads/users/',
         'dbColumn' => 'avatar',
         'metaColumns' => array(),

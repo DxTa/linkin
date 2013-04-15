@@ -59,7 +59,7 @@ class AppSchema extends CakeSchema {
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'owner_id' => array('type' => 'integer', 'null' => false),
     'image_id' => array('type' => 'integer', 'null' => false),
-    'title' => array('type' => 'text', 'null' => true),
+    'url' => array('type' => 'text', 'null' => true),
     'description' => array('type' => 'text', 'null' => true),
     'image' => array('type' => 'text', 'null' => true),
     'cnt_likes' => array('type' => 'integer', 'null' => true),

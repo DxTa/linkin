@@ -1,6 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
-define('UPLOAD_DIR', WWW_ROOT . 'uploads/links');
+define('UPLOAD_DIR_LINK', WWW_ROOT . 'uploads/links');
 /**
  * Link Model
  *
@@ -16,7 +16,7 @@ class Link extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'title';
+	public $displayField = 'description';
 
 /**
  * Validation rules
@@ -30,9 +30,9 @@ class Link extends AppModel {
         'nameCallback' => '',
         'append' => '',
         'prepend' => '',
-        'uploadDir' => UPLOAD_DIR,
-        'finalPath' => '/app/webroot/uploads/links',
-        'dbColumn' => 'images',
+        'uploadDir' => UPLOAD_DIR_LINK,
+        'finalPath' => '/app/webroot/uploads/links/',
+        'dbColumn' => 'image',
         'metaColumns' => array(),
         'defaultPath' => '',
         'overwrite' => false,
@@ -48,19 +48,19 @@ class Link extends AppModel {
     )
   );
 	public $validate = array(
-		'title' => array(
-			'minlength' => array(
-				'rule' => array('minlength'),
+		'url' => array(
+			// 'minlength' => array(
+        // 'rule' => array('minlength',),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			// ),
 		),
 		'description' => array(
 			'minlength' => array(
-				'rule' => array('minlength'),
+				'rule' => array('minlength',6),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -79,7 +79,7 @@ class Link extends AppModel {
  */
 	public $belongsTo = array(
 		'Owner' => array(
-			'className' => 'Owner',
+			'className' => 'User',
 			'foreignKey' => 'owner_id',
 			'conditions' => '',
 			'fields' => '',

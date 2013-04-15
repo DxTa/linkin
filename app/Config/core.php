@@ -2,6 +2,8 @@
   App::uses('Inflector', 'Utility');
   App::import('Vendor', array('file' => 'autoload'));
   App::uses('AttachmentBehavior', 'Uploader.Model/Behavior');
+  App::import('Vendor', array('file' => 'imple_html.dom'));
+  App::import('Vendor', array('file' => 'url_to_absolute.php'));
 /**
  * This is core configuration file.
  *
