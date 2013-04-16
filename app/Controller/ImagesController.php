@@ -11,6 +11,15 @@ class ImagesController extends AppController {
  *
  * @var mixed
  */
-	public $scaffold;
+  function upload() {
+    if ($this->request->is('post')) {
+      if ($this->Image->save($this->request->data, true)) {
+        $this->Session->setFlash('Your HEHE has been saved.');
+        // Do something
+      }
+      else {
 
+      }
+   }
+  }
 }

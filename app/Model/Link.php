@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+define('UPLOAD_DIR_LINK', WWW_ROOT . 'uploads/links');
 /**
  * Link Model
  *
@@ -15,27 +16,51 @@ class Link extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'title';
+	public $displayField = 'description';
 
 /**
  * Validation rules
  *
  * @var array
  */
+
+  public $actsAs = array(
+    'Uploader.Attachment' => array(
+      'image' => array(
+        'nameCallback' => '',
+        'append' => '',
+        'prepend' => '',
+        'uploadDir' => UPLOAD_DIR_LINK,
+        'finalPath' => '/app/webroot/uploads/links/',
+        'dbColumn' => 'image',
+        'metaColumns' => array(),
+        'defaultPath' => '',
+        'overwrite' => false,
+        'stopSave' => false,
+        'allowEmpty' => true,
+      )
+    ),
+    'Uploader.FileValidation' => array(
+      'fileName' => array(
+        'extension' => array('gif', 'jpg', 'png', 'jpeg'),
+        'required'  => true
+      )
+    )
+  );
 	public $validate = array(
-		'title' => array(
-			'minlength' => array(
-				'rule' => array('minlength'),
+		'url' => array(
+			// 'minlength' => array(
+        // 'rule' => array('minlength',),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			// ),
 		),
 		'description' => array(
 			'minlength' => array(
-				'rule' => array('minlength'),
+				'rule' => array('minlength',6),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -54,7 +79,7 @@ class Link extends AppModel {
  */
 	public $belongsTo = array(
 		'Owner' => array(
-			'className' => 'Owner',
+			'className' => 'User',
 			'foreignKey' => 'owner_id',
 			'conditions' => '',
 			'fields' => '',
@@ -75,8 +100,8 @@ class Link extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Like' => array(
-			'className' => 'Like',
+		'UserLinkLike' => array(
+			'className' => 'UserLinkLike',
 			'foreignKey' => 'link_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -88,8 +113,8 @@ class Link extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'View' => array(
-			'className' => 'View',
+		'UserLinkView' => array(
+			'className' => 'UserLinkView',
 			'foreignKey' => 'link_id',
 			'dependent' => false,
 			'conditions' => '',

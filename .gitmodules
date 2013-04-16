@@ -1,0 +1,3 @@
+[submodule "app/Plugin/resque"]
+	path = app/Plugin/resque
+	url = git://github.com/mikesmullin/CakePHP-PHP-Resque-Plugin.git

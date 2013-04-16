@@ -1,0 +1,21 @@
+LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+# Leave this area alone, CakePHP docs are wrong
+<Directory />
+   Options FollowSymLinks
+   AllowOverride None
+   Order deny,allow
+   Deny from all
+</Directory>
+
+# Match this area
+<Directory "/SomePath/app/webroot">
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride All   # Turn AllowOverride All on here
+  Order allow,deny
+  Allow from all
+</Directory>
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteRule    ^$ app/webroot/    [L]
+   RewriteRule    (.*) app/webroot/$1 [L]
+</IfModule>

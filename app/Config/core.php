@@ -1,4 +1,9 @@
 <?php
+  App::uses('Inflector', 'Utility');
+  App::import('Vendor', array('file' => 'autoload'));
+  App::uses('AttachmentBehavior', 'Uploader.Model/Behavior');
+  App::import('Vendor', array('file' => 'imple_html.dom'));
+  App::import('Vendor', array('file' => 'url_to_absolute.php'));
 /**
  * This is core configuration file.
  *
@@ -184,10 +189,10 @@
  * the cake shell command: cake schema create Sessions
  *
  */
-	// Configure::write('Session', array(
-		// 'defaults' => 'php'
-	// ));
-  Configure::write('Session.save', 'database');
+  Configure::write('Session', array(
+    'defaults' => 'php'
+  ));
+  // Configure::write('Session.save', 'database');
 
 /**
  * A random string used in security hashing methods.
@@ -283,3 +288,4 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
