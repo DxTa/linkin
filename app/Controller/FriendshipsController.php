@@ -20,19 +20,19 @@ class FriendshipsController extends AppController {
     }
   }
 
-  function approve($id = null) {
+  function edit($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid friendship'));
     }
 
     $friendship = $this->Friendship->findById($id);
-    if (!$friendship || $friendship["Friendship"]["friend_id"] != $this->Auth->user('id')) { //check if current_user
+    if (!$friendship || ($friendship["Friendship"]["friend_id"] != $this->Auth->user('id') && $this->request->data["Friendship"]["event"] != "destroy")) { //check if current_user
       $this->Session->setFlash('Unable to approve.');
       $this->redirect($this->referer());
     }
     if ($this->request->is('post') || $this->request->is('put')) {
       $this->Friendship->id = $id;
-      if ($this->Frienship->transition($this->request->data["event"])) {
+      if ($this->Friendship->transition($this->request->data["Friendship"]["event"])) {
         $this->Session->setFlash('Friendship updated');
         $this->redirect($this->referer());
       } else {
@@ -45,7 +45,4 @@ class FriendshipsController extends AppController {
     }
   }
 
-  function delete($id) {
-
-  }
 }

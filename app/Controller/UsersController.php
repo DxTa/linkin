@@ -15,7 +15,7 @@ class UsersController extends AppController {
     Security::setHash('sha1');
     $this->Auth->allow('register');
     $this->Auth->allow('login');
-    $this->Auth->allow('index');
+    // $this->Auth->allow('index');
     $this->Auth->allow('verify');
     $this->set('defaultSex', $this->defaultSex);
     // $this->Auth->autoRedirect = false;

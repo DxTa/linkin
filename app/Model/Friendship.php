@@ -72,6 +72,10 @@ class Friendship extends AppModel {
     return FALSE;
   }
 
+  public function _onStateDestroyed() {
+    $this->delete($this->field('id'));
+  }
+
 
   //The Associations below have been created with all possible keys, those that are not needed can be removed
 

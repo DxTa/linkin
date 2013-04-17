@@ -30,7 +30,7 @@ class StateMachineBehavior extends ModelBehavior
 	{
 		// create hasMany relationship between model and it's state model
 		$state_model_alias = $model->alias . 'State';
-		$model->bindModel(array('hasMany' => array($state_model_alias)), false);
+		$model->bindModel(array('hasMany' => array($state_model_alias => array('dependent' => true))), false);
 
 		// save some useful information in settings
 		$foreign_key = $model->hasMany[$state_model_alias]['foreignKey'];
