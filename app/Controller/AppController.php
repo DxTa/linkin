@@ -35,7 +35,7 @@ class AppController extends Controller {
   public $components = array(
     'Session',
     'Auth' => array(
-      'authorize' => array('Controller'), // <- here
+      // 'authorize' => array('Controller'), // <- here
       'loginRedirect' => array('controller' => 'users', 'action' => 'home'),
       'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
     ),
@@ -44,10 +44,14 @@ class AppController extends Controller {
 
   public function beforeFilter() {
     $this->set('current_user', $this->Auth->User());
+    if ($this->Auth->User() != null && $this->Auth->User()['active'] == false) {
+      $this->Session->setFlash('Account need to be verified.');
+      $this->redirect($this->Auth->logout());
+    }
   }
 
-  public function isAuthorized($user) {
+  // public function isAuthorized($user) {
     // return $user['active'];
-    return true;
-  }
+  // }
+
 }

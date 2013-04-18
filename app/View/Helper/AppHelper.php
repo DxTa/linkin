@@ -31,4 +31,27 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+
+  public function search($array, $kvs) {
+    $results = array();
+
+    if (is_array($array)) {
+      if (is_array($kvs)) {
+        $length = count($kvs);
+        $count = 0;
+        foreach ($kvs as $k => $v) {
+          if (isset($array[$k]) && $array[$k] == $v)
+            $count += 1;
+        }
+        if ($count == $length)
+          $results[] = $array;
+      }
+
+      foreach ($array as $subarray)
+        $results = array_merge($results, $this->search($subarray, $kvs));
+    }
+
+    return $results;
+  }
+
 }
