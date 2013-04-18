@@ -44,10 +44,10 @@ class AppController extends Controller {
 
   public function beforeFilter() {
     $this->set('current_user', $this->Auth->User());
-    if ($this->Auth->User() != null && $this->Auth->User()['active'] == false) {
-      $this->Session->setFlash('Account need to be verified.');
-      $this->redirect($this->Auth->logout());
-    }
+    // if ($this->Auth->User() != null && $this->Auth->User()['active'] == false) {
+      // $this->Session->setFlash('Account need to be verified.');
+      // $this->redirect($this->Auth->logout());
+    // }
   }
 
   // public function isAuthorized($user) {

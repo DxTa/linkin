@@ -118,7 +118,17 @@ class Link extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+    ),
 	);
+
+  public $hasAndBelongsToMany = array(
+    'likedUsers' => array(
+      'className' => 'User',
+      'joinTable' => 'user_link_likes',
+      'foreignKey' => 'user_id',
+      'associationForeignKey' => 'link_id',
+      'unique' => true,
+    )
+  );
 
 }
