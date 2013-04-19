@@ -33,7 +33,6 @@ App::uses('FB', 'Facebook.Lib');
  * @package       app.Model
  */
 class AppModel extends Model {
-  // public $recursive = -1;
   function save($data = null, $validate = true, $fieldList = array()) {
     $now = date('Y-m-d H:i:s');
     // set created_at field before creation

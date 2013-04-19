@@ -11,6 +11,7 @@
     <div class="recomments-holder">
     <?php foreach($comment['Recomment'] as $recomment): ?>
       <?php echo $recomment['content'] ?>
+      <br/>
     <?php endforeach ?>
     </div>
   </div>
