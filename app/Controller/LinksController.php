@@ -62,7 +62,7 @@ class LinksController extends AppController {
   }
 
   public function index() {
-    $this->set('links', $this->Link->find('all'));
+    $this->set('links', $this->Link->find('all',array()));
   }
 
 

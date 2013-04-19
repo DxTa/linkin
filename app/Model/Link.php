@@ -17,6 +17,7 @@ class Link extends AppModel {
  * @var string
  */
 	public $displayField = 'description';
+  public $recursive = 2;
 
 /**
  * Validation rules

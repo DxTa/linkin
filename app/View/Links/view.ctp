@@ -7,7 +7,7 @@
   <div class="comment-<?php echo $comment['id'] ?>-holder">
     <?php echo $comment['content'] ?>
     <input style="margin-left: 10px;" id= "recomment-input-<?php echo $comment['id'] ?>" />
-    <button onclick="recommentCreate(<?php echo $current_user['id'] ?>,<?php echo $comment['id']?>)"> Recomment </button>
+    <button onclick="recommentCreate(<?php echo $current_user['User']['id'] ?>,<?php echo $comment['id']?>)"> Recomment </button>
     <div class="recomments-holder">
     <?php foreach($comment['Recomment'] as $recomment): ?>
       <?php echo $recomment['content'] ?>
@@ -20,7 +20,7 @@
 <img src="<?php echo $link['Link']['image'] ?>"/>
 <br/>
 <input type='text' name='content' id='comment-input' />
-<button onclick="commentCreate(<?php echo $current_user['id'] ?>,<?php echo $link['Link']['id'] ?>)"> COMMENT </button>
+<button onclick="commentCreate(<?php echo $current_user['User']['id'] ?>,<?php echo $link['Link']['id'] ?>)"> COMMENT </button>
 
 <script type="text/javascript">
 var commentCreate = function(user_id,link_id) {
