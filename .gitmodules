@@ -1,3 +1,9 @@
 [submodule "app/Plugin/resque"]
 	path = app/Plugin/resque
 	url = git://github.com/mikesmullin/CakePHP-PHP-Resque-Plugin.git
+[submodule "app/Plugin/CakeResque"]
+  path = app/Plugin/CakeResque
+  url = git@github.com:kamisama/Cake-Resque.git
+[submodule "app/Plugin/Facebook"]
+  path = app/Plugin/Facebook
+  url = git@github.com:webtechnick/CakePHP-Facebook-Plugin.git
