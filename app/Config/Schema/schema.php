@@ -82,8 +82,8 @@ class AppSchema extends CakeSchema {
   public $comments = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false),
-    'title' => array('type' => 'text', 'null' => true),
-    'description' => array('type' => 'text', 'null' => true),
+    'link_id' => array('type' => 'integer', 'null' => false),
+    'content' => array('type' => 'text', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))

@@ -27,6 +27,18 @@ class LinksController extends AppController {
     }
   }
 
+  public function view($id = null)  {
+    if (!$id) {
+      throw new NotFoundException(__('Invalid link'));
+    }
+
+    $link = $this->Link->findById($id);
+    if (!$link) {
+      throw new NotFoundException(__('Invalid link'));
+    }
+    $this->set('link', $link);
+  }
+
   public function loadImg() {
     $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
     $this->autoLayout = false;

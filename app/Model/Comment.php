@@ -46,6 +46,10 @@ class Comment extends AppModel {
 			// 'conditions' => '',
 			// 'fields' => '',
 			// 'order' => ''
-		)
+    ),
+    'Link' => array(
+      'className' => 'Link',
+      'foreginKey' => 'link_id'
+    )
 	);
 }

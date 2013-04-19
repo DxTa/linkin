@@ -119,6 +119,19 @@ class Link extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
     ),
+    'Comment' => array(
+			'className' => 'Comment',
+			'foreignKey' => 'link_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+    )
 	);
 
   public $hasAndBelongsToMany = array(
