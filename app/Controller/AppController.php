@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+  public $helpers = array('Facebook.Facebook','Html','Form');
   public $components = array(
     'Session',
     'Auth' => array(
@@ -39,15 +40,17 @@ class AppController extends Controller {
       'loginRedirect' => array('controller' => 'users', 'action' => 'home'),
       'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
     ),
+    'Facebook.Connect' => array('model' => 'User'),
     'DebugKit.Toolbar'
   );
 
   public function beforeFilter() {
-    $this->set('current_user', $this->Auth->User());
     // if ($this->Auth->User() != null && $this->Auth->User()['active'] == false) {
       // $this->Session->setFlash('Account need to be verified.');
       // $this->redirect($this->Auth->logout());
     // }
+    $this->loadModel('User');
+    $this->set('current_user', $this->User->findByEmail($this->Auth->User('email')));
   }
 
   // public function isAuthorized($user) {

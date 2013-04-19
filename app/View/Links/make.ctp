@@ -1,6 +1,6 @@
 <?php
 echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
-echo $this->Form->inpput('owner_id',array('value'=> $current_user['id'],'type'=>'hidden'));
+echo $this->Form->inpput('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
 echo $this->Form->input('url',array('type'=>'text'));
 echo $this->Form->input('description',array('type'=>'text'));
 echo $this->Form->input('image', array('label' => 'Remote URL'));
