@@ -12,7 +12,6 @@ class Comment extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'title';
 
 /**
  * Validation rules
@@ -20,7 +19,7 @@ class Comment extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'description' => array(
+		'content' => array(
 			'minlength' => array(
 				'rule' => array('minlength',2),
 				//'message' => 'Your custom message here',
@@ -52,4 +51,20 @@ class Comment extends AppModel {
       'foreginKey' => 'link_id'
     )
 	);
+	public $hasMany = array(
+    'Recomment' => array(
+      'className' => 'Recomment',
+			'foreignKey' => 'comment_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+    )
+  );
+
 }

@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
  * Comments Controller
  *
  */
-class CommentsController extends AppController {
+class RecommentsController extends AppController {
 
 /**
  * Scaffold
@@ -12,7 +12,6 @@ class CommentsController extends AppController {
  * @var mixed
  */
 	public $scaffold;
-  var $helpers = array('Html', 'Form', 'Js'=>array("Jquery"));
 
 
   public function make() {
@@ -23,11 +22,14 @@ class CommentsController extends AppController {
       $this->autoRender = false;
       $response = array('success' => true);
 
-      $this->Comment->create();
-      if($this->Comment->save($this->request->data)) {
+      $this->Recomment->create();
+      if($this->Recomment->save($this->request->data)) {
         $this->loadModel('Link');
-        $link = $this->Link->findById($this->request->data['Comment']['link_id']);
-        $this->Link->id = $this->request->data['Comment']['link_id'];
+        $this->loadModel('Comment');
+
+        $comment = $this->Comment->findById($this->request->data['Recomment']['comment_id']);
+        $link = $this->Comment->findById($comment['Comment']['id']);
+        $this->Link->id = $link['Link']['id'];
         $this->Link->saveField('cnt_comments',$link['Link']['cnt_comments'] + 1);
 
       } else {
@@ -38,17 +40,5 @@ class CommentsController extends AppController {
       return;
     }
 
-  }
-
-  public function view($id = null)  {
-    if (!$id) {
-      throw new NotFoundException(__('Invalid link'));
-    }
-
-    $comment = $this->Comment->findById($id);
-    if (!$comment) {
-      throw new NotFoundException(__('Invalid link'));
-    }
-    $this->set('comment', $comment);
   }
 }

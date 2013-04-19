@@ -4,8 +4,16 @@
 <h2> Comment </h2>
 <div class="comments-holder">
 <?php foreach($link['Comment'] as $comment): ?>
-  <?php echo $comment['content'] ?>
-  <?php print "<br>" ?>
+  <div class="comment-<?php echo $comment['id'] ?>-holder">
+    <?php echo $comment['content'] ?>
+    <input style="margin-left: 10px;" id= "recomment-input-<?php echo $comment['id'] ?>" />
+    <button onclick="recommentCreate(<?php echo $current_user['id'] ?>,<?php echo $comment['id']?>)"> Recomment </button>
+    <div class="recomments-holder">
+    <?php foreach($comment['Recomment'] as $recomment): ?>
+      <?php echo $recomment['content'] ?>
+    <?php endforeach ?>
+    </div>
+  </div>
 <?php endforeach ?>
 </div>
 <br/>
@@ -31,6 +39,26 @@ var commentCreate = function(user_id,link_id) {
       dataType: 'json',
       success: function(response,status) {
         $(".comments-holder").append("<br>" + content);
+      }
+  })
+};
+
+var recommentCreate = function(user_id,comment_id) {
+  var content = $("#recomment-input-"+comment_id).val();
+  data = {
+    Recomment: {
+      'user_id': user_id,
+      'comment_id': comment_id,
+      'content': content
+    }
+  };
+  $.ajax({
+    url: '/Recomments/make',
+      type: 'post',
+      data: {data: data},
+      dataType: 'json',
+      success: function(response,status) {
+        $(".comment-" + comment_id + "-holder .recomments-holder").append("<br>" + content);
       }
   })
 };

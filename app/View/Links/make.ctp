@@ -6,17 +6,11 @@ echo $this->Form->input('description',array('type'=>'text'));
 echo $this->Form->input('image', array('label' => 'Remote URL'));
 echo $this->Form->submit('Make',array('class' => 'btn'));
 ?>
-
-<input type="text" name="imgURL" id="test-input"/>
-
-<input type='button' value= "TEST" onclick= "checkhang()"/>
-
+<a href="/links/index">Go Index</a>
 <div id="responseSuccess"></div>
 
 <script type="text/javascript">
-var checkhang = function() {
-  data = $('#test-input').val();
-
+var checkLink = function(data) {
   $.ajax({
     url:'/links/loadimg',
       type:'post',
@@ -32,6 +26,17 @@ var checkhang = function() {
       }
   });
 }
+
+$('#LinkUrl').bind('paste', function () {
+  var element = this;
+  setTimeout(function () {
+    var text = $(element).val();
+    if(/http:\/\/([a-z1-9]+)\.(.*)/.exec(text) != null)
+      checkLink(text);
+  }, 100);
+});
+
+
 </script>
 
 

@@ -61,6 +61,7 @@ class AppSchema extends CakeSchema {
     'url' => array('type' => 'text', 'null' => true),
     'description' => array('type' => 'text', 'null' => true),
     'image' => array('type' => 'text', 'null' => true),
+    'cnt_comments' => array('type' => 'integer', 'null' => true,'default' => 0),
     'cnt_likes' => array('type' => 'integer', 'null' => true,'default' => 0),
     'cnt_views' => array('type' => 'integer', 'null' => true,'default' => 0),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
@@ -83,6 +84,16 @@ class AppSchema extends CakeSchema {
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false),
     'link_id' => array('type' => 'integer', 'null' => false),
+    'content' => array('type' => 'text', 'null' => true),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
+  public $recomments = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'user_id' => array('type' => 'integer', 'null' => false),
+    'comment_id' => array('type' => 'integer', 'null' => false),
     'content' => array('type' => 'text', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),

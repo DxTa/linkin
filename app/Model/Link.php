@@ -122,10 +122,10 @@ class Link extends AppModel {
     'Comment' => array(
 			'className' => 'Comment',
 			'foreignKey' => 'link_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'created_at',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
@@ -141,7 +141,7 @@ class Link extends AppModel {
       'foreignKey' => 'user_id',
       'associationForeignKey' => 'link_id',
       'unique' => true,
-    )
+    ),
   );
 
 }
