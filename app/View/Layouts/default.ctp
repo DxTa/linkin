@@ -19,7 +19,8 @@
 ?>
 <!DOCTYPE html>
 <?php $title_for_layout = 'Linkin' ?>
-<html>
+
+<?php echo $this->Facebook->html(); ?>
 <head>
   <?php echo $this->Html->charset(); ?>
 	<title>
@@ -57,4 +58,5 @@
 	</div>
   <?php echo $this->element('sql_dump'); ?>
 </body>
+    <?php echo $this->Facebook->init(); ?>
 </html>

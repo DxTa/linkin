@@ -14,12 +14,12 @@
     <td><?php echo h($user['User']['created_at']); ?>&nbsp;</td>
     <td><?php echo h($user['User']['updated_at']); ?>&nbsp;</td>
     <td class="actions">
-      <?php if ($current_user["id"] != $user['User']['id']) {
-        $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["id"]));
-        if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["id"]));
+      <?php if ($current_user["User"]["id"] != $user['User']['id']) {
+        $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
+        if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]));
         if (!$friend) {
           echo $this->Form->create('Friendship', array('url'=>array('controller'=>'friendships', 'action'=>'add')));
-          echo $this->Form->hidden('user_id', array('value' => $current_user["id"]));
+          echo $this->Form->hidden('user_id', array('value' => $current_user["User"]["id"]));
           echo $this->Form->hidden('friend_id', array('value' => $user['User']['id']));
           echo $this->Form->submit('Add Friend', array('class' => 'btn'));
         } else {
@@ -29,7 +29,7 @@
             echo $this->Form->submit('Unfriend', array('class' => 'btn'));
           }
           else {
-            if ($friend[0]["Friendship"]["friend_id"] == $current_user["id"]) {
+            if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
               echo $this->Form->hidden('event', array('value' => 'approve'));
               echo $this->Form->submit('Approve', array('class' => 'btn'));
             } else {

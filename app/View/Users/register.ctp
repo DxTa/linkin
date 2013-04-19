@@ -8,3 +8,4 @@ echo $this->Form->input('dob',array('type' => 'date'));
 echo $this->Form->input('password');
 echo $this->Form->submit('Register',array('class' => 'btn'));
 ?>
+
