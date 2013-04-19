@@ -2,18 +2,28 @@
 class AppSchema extends CakeSchema {
 
 	public function before($event = array()) {
+    $db = ConnectionManager::getDataSource($this->connection);
+    $db->cacheSources = false;
 		return true;
 	}
 
-	public function after($event = array()) {
-	}
+  public function after($event = array()) {
+    if (isset($event['create'])) {
+      switch ($event['create']) {
+      case 'users':
+        $db = ConnectionManager::getDataSource('default');
+        $result = $db->query('ALTER TABLE `users` ADD `facebook_id` BIGINT(20) UNSIGNED NOT NULL');
+        break;
+      }
+    }
+  }
 
   public $users = array(
-		'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-		'email' => array('type' => 'text', 'null' => true, 'default' => null),
-		'username' => array('type' => 'text', 'null' => true, 'default' => null),
-		'sex' => array('type' => 'text', 'null' => true, 'default' => null),
-		'avatar' => array('type' => 'text', 'null' => true, 'default' => null),
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'email' => array('type' => 'text', 'null' => true, 'default' => null),
+    'username' => array('type' => 'text', 'null' => true, 'default' => null),
+    'sex' => array('type' => 'text', 'null' => true, 'default' => null),
+    'avatar' => array('type' => 'text', 'null' => true, 'default' => null),
     'dob' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'password' => array('type' => 'text', 'null' => true, 'default' => null),
     'remember_token' => array('type' => 'text', 'null' => true, 'default' => null),
@@ -21,20 +31,20 @@ class AppSchema extends CakeSchema {
     'admin' => array('type' => 'boolean', 'length' => 1, 'null' => false, 'default' => 0),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-	);
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
 
   public $authentications = array(
-		'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-		'user_id' => array('type' => 'integer', 'null' => false),
-		'provider' => array('type' => 'text', 'null' => true, 'default' => null),
-		'uid' => array('type' => 'text', 'null' => true, 'default' => null),
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'user_id' => array('type' => 'integer', 'null' => false),
+    'provider' => array('type' => 'text', 'null' => true, 'default' => null),
+    'uid' => array('type' => 'text', 'null' => true, 'default' => null),
     'access_token' => array('type' => 'text', 'null' => true, 'default' => NULL),
     'secret' => array('type' => 'text', 'null' => true, 'default' => null),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-	);
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
 
   public $friendships = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
@@ -43,7 +53,7 @@ class AppSchema extends CakeSchema {
     'state' => array('type' => 'text', 'null' => false),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
   );
 
   public $friendship_states = array(
