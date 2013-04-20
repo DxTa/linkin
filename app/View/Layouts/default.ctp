@@ -32,6 +32,7 @@
     echo $this->Html->css('layout');
     echo $this->Html->css('bootstrap.min');
     echo $this->Html->css('bootstrap-responsive.min');
+    echo $this->Html->css('link');
     // echo $this->Html->css('core');
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');

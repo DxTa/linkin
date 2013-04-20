@@ -1,0 +1,11 @@
+#responseSuccess img{
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  border: 2px solid white;
+}
+
+#responseSuccess img.chosen {
+  border: 2px solid red;
+  opacity: 0.8;
+}
