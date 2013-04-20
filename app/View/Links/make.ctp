@@ -4,6 +4,8 @@
   var f = document.createElement('form');
   var div = document.createElement('div');
   div.className += 'link-images-holder';
+  var div_h = document.createElement('div');
+  div_h.className += 'linkin-form';
   f.method = 'post';
   f.action = 'http://localhost:3000/links/make';
   f.enctype = 'multipart/form-data';
@@ -29,15 +31,47 @@
     window.im = im;
     img = document.createElement('img');
     img.src = e.src;
+    img.className +='linkin-img';
     img.onclick = function() {
-      console.log(this.src);
+      nl_c = document.getElementsByClassName('linkin-img-chosen');
+      arr = [];
+      for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
+      arr.forEach(function(e) {
+        e.className = 'linkin-img';
+      });
+
+      this.className += ' linkin-img-chosen';
       f.appendChild(im);
       im.value = this.src;
+
     };
     div.appendChild(img);
   });
-  document.getElementsByTagName('body')[0].appendChild(f);
-  document.getElementsByTagName('body')[0].appendChild(div);
+  var css = document.createElement('style');
+  css.type = 'text/css';
+  css.innerHTML = '
+    .linkin-form {
+      position: absolute;
+      top: 0px;
+      height: 300px;
+      width: 100%;
+      background: #DADADA;
+      z-index: 999;
+    }
+    .linkin-img {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      border: 2px solid white;
+    }
+    .linkin-img-chosen {
+      border: 2px solid red;
+    }
+  ';
+  div_h.appendChild(f);
+  div_h.appendChild(div);
+  document.body.appendChild(css);
+  document.body.appendChild(div_h);
 }">ALO</a>
 
 <?php
