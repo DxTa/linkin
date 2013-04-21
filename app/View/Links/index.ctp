@@ -11,6 +11,7 @@
        if( !$this->App->search($link['likedUsers'],array('id' => $current_user['User']["id"]))) {
     ?>
     <td> <button onclick="likeCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"> LIKE </button></td>
+    <td><?php echo $this->Html->link(__('View'), array('action' => 'view', $link['Link']['id'])); ?></td>
     <?php } ?>
   </tr>
 <?php endforeach; ?>

@@ -1,5 +1,6 @@
 <a href=" <?php echo $link['Link']['url']; ?>">
   <h1> URL </h1>
+  <?php echo $this->Facebook->share(null,array('fbxml' => true, 'style' => 'link','label' => 'share it now')); //default is current address ?>
 </a>
 <h2> Comment </h2>
 <div class="comments-holder">
