@@ -1,0 +1,129 @@
+body {
+  overflow-y: scroll;
+  background: #f0f0f0 none;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+  font-size: 12px;
+  line-height: 1.4em;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  width: 100%;
+  background: #fff url(../img/bg_header.png) repeat-x 0 0;
+  border-bottom: 1px solid #dbd7ca;
+  margin: auto 0;
+  min-width: 1000px;
+}
+#header .header-content {
+  width: 1000px;
+  height: 49px;
+  font-size: 12px;
+  margin: 0 auto;
+  z-index: 30;
+  position: relative;
+}
+
+.header-content .logo {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+.header-content .logo a {
+  background: url(../img/simple_logo.png) no-repeat 50% 50%;
+  display: block;
+  width: 80px;
+  height: 20px;
+  text-indent: -2000em;
+}
+
+.header-content .menu-bar {
+  list-style: none;
+  font-weight: bold;
+  font-size: 14px;
+  position: absolute;
+  left: 100px;
+  top: 13px;
+  z-index: 30;
+}
+
+.menu-bar li {
+  float: left;
+  position: relative;
+}
+.menu-bar li a {
+  text-decoration: none;
+}
+.menu-bar li.line {
+  color: #d2d2d2;
+  margin: 0 8px 0;
+  font-weight: normal;
+}
+.menu-bar li.menu-btn {
+  margin: -6px 0 0 33px;
+}
+.menu-bar li.menu-btn:last-child {
+  margin: -6px 0 0 6px;
+}
+.menu-bar li.menu-btn a {
+  text-align: center;
+  color: #fff;
+  width: 62px;
+  height: 27px;
+  line-height: 25px;
+  display: inline-block;
+  margin-right: 10px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.menu-bar li.menu-btn a.menu-linkin {
+  background: #e30000;
+}
+
+.menu-bar li.menu-btn a.menu-photo {
+  background: #4765a3;
+}
+.menu-bar div {
+  margin: 0;
+  padding: 0;
+}
+
+
+.header-content .header-right {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+.header-content .header-right #profile {
+  list-style: none;
+  line-height: 25px;
+  height: 27px;
+}
+
+.header-content .header-right #profile li{
+  font-size: 12px;
+  color: #ADADAD;
+  line-height: 25px;
+}
+.header-content .header-right #profile a{
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+#content {
+  padding-top: 70px;
+}
