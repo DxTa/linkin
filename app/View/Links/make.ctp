@@ -1,5 +1,3 @@
-
-
 <a href="javascript:{
   var f = document.createElement('form');
   var div = document.createElement('div');

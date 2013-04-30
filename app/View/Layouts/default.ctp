@@ -34,13 +34,15 @@
     echo $this->Html->css('bootstrap-responsive.min');
     echo $this->Html->css('link');
     echo $this->Html->css('custom');
+    echo $this->Html->css('popup');
     // echo $this->Html->css('core');
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
+    echo $this->fetch('script');
+    echo $this->Facebook->init();
 	?>
 </head>
 <body>
@@ -58,7 +60,6 @@
       <?php echo $this->element('menu/footer'); ?>
 		</div>
 	</div>
-  <?php echo $this->element('sql_dump'); ?>
+  <?php echo $this->element('popup/popup') ?>
 </body>
-    <?php echo $this->Facebook->init(); ?>
 </html>

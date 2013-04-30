@@ -9,7 +9,7 @@
 
   <li class='menu-btn'>
     <div>
-      <a href='#' class='menu-linkin'>LinkIn</a>
+      <a href='#' class='menu-linkin' onclick='newLink()'>LinkIn</a>
     </div>
   </li>
   <li class='menu-btn'>
@@ -24,19 +24,31 @@
 <div class='header-right'>
   <ul id='profile'>
     <li>
-      <a href='#'>Login</a>
+      <a href='#' onclick='login()'>Login</a>
       OR
-      <a href='#'>Register</a>
+      <a href='#' onlick='register()'>Register</a>
     </li>
   </ul>
 </div>
 
 <?php if ($current_user) {
-
-
   echo $this->Facebook->logout(array('label' => 'Logout', 'redirect' => array('controller' => 'users', 'action' => 'logout')));
 }
 ?>
 </div>
+<script type="text/javascript">
+var newLink = function() {
+  $(".popup").show();
+  var test = <?php echo json_encode($this->element('popup/new_link')); ?>;
+  $(".popup .popup-content").html(test);
+};
+
+var login = function() {
+  $(".popup").show();
+  var test = <?php echo json_encode($this->element('popup/login')); ?>;
+  $(".popup .popup-content").html(test);
+}
+
+</script>
 
 
