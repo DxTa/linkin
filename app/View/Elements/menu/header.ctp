@@ -31,7 +31,7 @@
       <?php if(!$current_user)  { ?>
       <a href='#' onclick='showLogin()'>Login</a>
       OR
-      <a href='#' onlick='register()'>Register</a>
+      <a href='#' onclick='showRegister()'>Register</a>
       <?php } else {?>
       <a href='#'>
         <img src="<?php echo $current_user['User']['avatar']?>" class='small-avatar' />
@@ -102,6 +102,12 @@ var showLogin = function() {
   $(".popup .popup-content").html(test);
 };
 
+var showRegister = function() {
+  $(".popup").show();
+  var test = <?php echo json_encode($this->element('popup/register')); ?>;
+  $(".popup .popup-content").html(test);
+};
+
 var showDropdown = function() {
   $(".menu-dropdown").addClass('expand');
   $(".top-channel-box").show();
@@ -112,7 +118,7 @@ var showDropdown = function() {
       $("#content").unbind()
     }
   })
-}
+};
 
 
 

@@ -145,3 +145,31 @@ a:hover {
 .register-now .register-fb a{
   opacity: 0;
 }
+
+
+.register-bar {
+  height: 26px;
+  border-bottom: 1px #fff solid;
+  margin-bottom: 14px;
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+.step1 {
+  background: transparent url('../img/bg-register-bar.png') no-repeat scroll left top;
+}
+
+.step2 {
+  background: transparent url('../img/bg-register-bar.png') no-repeat scroll left -46px;
+}
+
+.step {
+  padding: 4px 3px 4px 33px;
+  margin-left: 16px;
+  float: left;
+  width: 140px;
+}
+
+.register-form .date select{
+  width: 70px;
+}
