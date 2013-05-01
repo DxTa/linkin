@@ -63,3 +63,9 @@
   <?php echo $this->element('popup/popup') ?>
 </body>
 </html>
+
+<script type="text/javascript">
+var hidePopup = function() {
+  $(".popup").hide();
+}
+</script>

@@ -123,7 +123,188 @@ body {
   color: #333;
 }
 
+.header-right #profile .acc-link {
+  cursor: pointer;
+  display: inline-block;
+}
 
+.header-right #profile .acc-link .arrow-down {
+  margin-left: 6px;
+  margin-right: 8px;
+  background: url("../img/menu-icon.png") no-repeat;
+  width: 19px;
+  height: 15px;
+  margin-top: 6px;
+}
+
+.header-right #profile .acc-link .arrow-down:hover {
+  margin-left: 6px;
+  margin-right: 8px;
+  background: url("../img/menu-icon-click.png") no-repeat;
+  width: 19px;
+  height: 15px;
+  margin-top: 6px;
+}
+.header-right #profile .acc-link .expand {
+  margin-left: 6px;
+  margin-right: 8px;
+  background: url("../img/menu-icon-click.png") no-repeat;
+  width: 19px;
+  height: 15px;
+  margin-top: 6px;
+}
+.header-right #profile .top-channel-box {
+  display: none;
+  z-index: 99;
+  background: url(../img/bg-transparent60.png);
+  padding: 6px;
+  position: absolute;
+  top: 39px;
+  left: -642px;
+  text-align: left;
+}
+.top-channel-box .top-channel-box-inner {
+  border: 1px solid #000;
+  width: 760px;
+  position: relative;
+  font-size: 11px;
+  font-weight: normal;
+  background: #ccc;
+}
+.user-menu-top {
+  float: right;
+  background: #e5e5e5;
+  border-left: 1px #fff solid;
+  padding-left: 1px;
+  margin-left: 1px;
+  height: 384px;
+  width: 190px;
+}
+
+.user-menu-top ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.user-menu-top ul li {
+  display: block;
+  background: #e5e5e5;
+  border-top: 1px #fff solid;
+  border-bottom: 1px #cbcbcb solid;
+}
+.user-menu-top ul li:hover {
+  background: #d9d9d9;
+}
+.user-menu-top ul li a{
+  font-size: 13px !important;
+  font-family: tahoma;
+  color: #333333 !important;
+  padding: 10px;
+  display: block;
+}
+
+.user-channel-top {
+  float: left;
+  width: 543px;
+  height: 360px;
+  background: #fff;
+  padding: 12px;
+  position: relative;
+}
+.user-channel-top .head-menu {
+  display: block;
+  padding-bottom: 17px;
+  background: transparent url('../img/bg_border_bottom_cbox.gif') repeat-x scroll left bottom;
+}
+.user-channel-top .head-menu .channel-link {
+  float: left;
+  color: #999;
+  font-size: 14px;
+  padding-top: 3px;
+}
+
+.user-channel-top .head-menu .channel-link a {
+  color: #808080;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.user-channel-top .head-menu .channel-link a:hover{
+  color: #cd0607;
+}
+
+.user-channel-top .top-channel-list .lists-content {
+  max-height: 308px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.user-channel-top .top-channel-list .lists-content .list-list {
+
+}
+.user-channel-top .top-channel-list .lists-content ul {
+  width: 580px;
+  margin-left: 0px;
+}
+
+.user-channel-top .top-channel-list .lists-content ul li{
+  margin-right: 18px;
+  width: 240px;
+  padding: 8px;
+  float: left;
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  height: 36px;
+}
+
+.user-channel-top .top-channel-list .lists-content ul li .list-thumb{
+  margin-right: 10px;
+  float: left;
+}
+
+.user-channel-top .top-channel-list .lists-content ul li .title{
+  font-size: 11px;
+  display: block;
+  color: #999999;
+  line-height: 14px;
+}
+.user-channel-top .top-channel-list .lists-content ul li:hover{
+  cursor: pointer;
+  background: #d9d9d9;
+}
+
+.user-channel-top .top-channel-list .lists-content ul li img{
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+
+
+.small-avatar {
+  width: 19px;
+  height: 19px;
+  background: none;
+  vertical-align: middle;
+  margin-top: -1px;
+  border: 1px solid #ccc;
+  padding: 1px;
+}
+
+
+.clear {
+  clear: both;
+  height: 0;
+}
+
+.active {
+  display: blocl;
+}
 #content {
   padding-top: 70px;
+  min-height: 1000px;
+}
+
+#debug-kit-toolbar {
+  display: none;
 }
