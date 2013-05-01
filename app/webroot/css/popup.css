@@ -4,6 +4,7 @@
   top: 0;
   z-index: 999;
   width: 100%;
+  text-align: center;
 }
 
 .popup-background {
@@ -11,17 +12,17 @@
   width: 100%;
   height: 1000px;
   background: rgba(173, 173, 173, 0.64);
-  z-index: 8;
+  position: absolute;
+  top: 0;
 }
 
 .popup-content {
-  position: absolute;
-  top: 0px;
-  z-index: 10;
+
 }
 
 .login-form-holder {
-  width: 714px;
+  padding: 20px;
+  width: 400px;
   -webkit-animation: bounceIn 0.5s none;
   -moz-animation: bounceIn 0.5s none;
   -ms-animation: bounceIn 0.5s none;
@@ -45,7 +46,45 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 1;
   background: #fff;
-  margin: 0 auto;
+  margin: 150px auto 0;
+  text-align: center;
+}
+
+.login-form {
+  border: 1px #e2e2e2 solid;
+  background: #f5f5f5;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 10px;
   position: relative;
+  margin: auto;
   text-align: left;
+}
+
+.login-form label {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.login-form .btn {
+  order-radius: 2px;
+  margin-right: 8px;
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 12px 5px;
+  cursor: pointer;
+  text-align: center;
+  font-family: Tahoma;
+}
+
+.login-form input[type='submit'] {
+  margin: 10px 0 0 120px;
+  background: #6d84b4;
+  border: 1px #3b5998 solid;
+  width: 90px;
+  padding: 0;
 }
