@@ -16,6 +16,13 @@ class LinksController extends AppController {
 
   var $helpers = array('Html', 'Form', 'Js'=>array("Jquery"));
 
+
+  function beforeFilter() {
+    parent::beforeFilter();
+    Security::setHash('sha1');
+    $this->Auth->allow('index');
+  }
+
   public function make() {
     if($this->request->is('post')) {
       $this->Link->create();

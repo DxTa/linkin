@@ -12,7 +12,7 @@ class AppSchema extends CakeSchema {
       switch ($event['create']) {
       case 'users':
         $db = ConnectionManager::getDataSource('default');
-        $result = $db->query('ALTER TABLE `users` ADD `facebook_id` BIGINT(20) UNSIGNED NOT NULL');
+        $result = $db->query('ALTER TABLE `users` ADD `facebook_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT 0');
         break;
       }
     }

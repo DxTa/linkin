@@ -9,7 +9,10 @@
 
   <li class='menu-btn'>
     <div>
-      <a href='#' class='menu-linkin' onclick='newLink()'>LinkIn</a>
+      <?php if($current_user)  {?>
+        <a href='#' class='menu-linkin' onclick='newLink()'>LinkIn</a>
+      <?php }else ?>
+        <a href='#' class='menu-linkin'>LinkIn</a>
     </div>
   </li>
   <li class='menu-btn'>
