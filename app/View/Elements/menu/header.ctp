@@ -29,7 +29,7 @@
   <ul id='profile'>
     <li>
       <?php if(!$current_user)  { ?>
-      <a href='#' onclick='login()'>Login</a>
+      <a href='#' onclick='showLogin()'>Login</a>
       OR
       <a href='#' onlick='register()'>Register</a>
       <?php } else {?>
@@ -96,7 +96,7 @@ var newLink = function() {
   $(".popup .popup-content").html(test);
 };
 
-var login = function() {
+var showLogin = function() {
   $(".popup").show();
   var test = <?php echo json_encode($this->element('popup/login')); ?>;
   $(".popup .popup-content").html(test);
