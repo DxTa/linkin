@@ -74,7 +74,7 @@
                       <?php echo $link['Link']['cnt_comments'] ?> Comments
                     </a>
                       ·
-                    <a class='spread-link' href='#'> Facebook this link </a>
+                    <?php echo $this->Facebook->share(Router::url(array('controller' => 'links', 'action' => 'view', $link['Link']['id'])),array('style' => 'link','label' => 'Facebook this link')); ?>
                   </div>
                 </div>
               </div>
