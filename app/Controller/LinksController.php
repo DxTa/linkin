@@ -27,7 +27,14 @@ class LinksController extends AppController {
     if($this->request->is('post')) {
       $this->Link->create();
       if($this->Link->save($this->request->data)) {
-        $this->redirect(array('action' => 'view', $this->Link->id));
+        $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        $response = array('success' => true);
+        $data = array('redirectURL' => "/links/view/{$this->Link->id}");
+        $response['data'] = $data;
+        $this->header('Content-Type: application/json');
+        echo json_encode($response);
       } else {
 
       }

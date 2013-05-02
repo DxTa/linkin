@@ -13,6 +13,20 @@
       $c = ClassRegistry::init('Category');
       $c_result = $c->query("select id, name from categories");
       $c_array = array_combine(Set::extract('/categories/id', $c_result), Set::extract('/categories/name', $c_result));
+      $data = $this->Js->get('#LinkMakeForm')->serializeForm(array('isForm' => true, 'inline' => true));
+      $this->Js->get('#LinkMakeForm')->event(
+          'submit',
+          $this->Js->request(
+            array('action' => 'make'),
+            array(
+                    'data' => $data,
+                    'async' => true,
+                    'dataExpression'=>true,
+                    'method' => 'POST',
+                    'success' => "$('.viewButton').attr('href',JSON.parse(data).data.redirectURL).show();$('.newLink-form form .submit').hide()",
+                )
+            )
+        );
       echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
       echo $this->Form->input('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
       echo $this->Form->input('url',array('type'=>'text', 'div' => array('class' => 'urlInputDiv')));
@@ -24,6 +38,9 @@
       echo $this->Form->textarea('description',array('rows' => 5));
       echo $this->Form->input('image', array('label' => 'Remote URL', 'type' => 'hidden'));
       echo $this->Form->submit('Linkin');
+      echo $this->Form->end();
+      echo $this->Js->writeBuffer();
+      echo "<a class=\"viewButton\" style=\"display: none;\" href=\"#\">View It</a>";
       ?>
     </div>
     <div id="responseSuccess"></div>
@@ -65,7 +82,6 @@ $('#LinkUrl').bind('change', function () {
       checkLink(text);
   }, 100);
 });
-
 
 </script>
 

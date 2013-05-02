@@ -278,6 +278,7 @@ a:hover {
   display: block;
   margin-left: 155px;
   text-align: left;
+  margin-bottom: 40px;
 }
 
 .popup-header-title {
@@ -341,6 +342,27 @@ a:hover {
   color: #fff;
   padding: 5px 15px;
   margin: 0;
+}
+
+.newLink-form .viewButton {
+  float: right;
+  cursor: pointer;
+  border: 1px solid #484848;
+  background: #6C6C6C;
+  -moz-box-shadow: inset -1px 1px 0 0 #bfbfbf;
+  -webkit-box-shadow: inset -1px 1px 0 0 #BFBFBF;
+  box-shadow: inset -1px 1px 0 0 #BFBFBF;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  color: #fff;
+  padding: 7px 15px;
+  margin: 0;
+  font-size: 14px;
+}
+
+#LinkMakeForm {
+  margin: 0px;
 }
 
 .newLink-form .urlInputDiv {
