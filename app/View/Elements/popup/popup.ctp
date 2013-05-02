@@ -1,6 +1,5 @@
-<div class='popup'>
-  <div class='popup-background'  onclick="hidePopup()"></div>
-  <div class='popup-content'></div>
+<div class='popup' onclick="event.target == this ? hidePopup() : null;">
+  <div class='popup-content' onclick="event.target == this ? hidePopup() : null;"></div>
 </div>
 
 

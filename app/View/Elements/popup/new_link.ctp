@@ -1,3 +1,5 @@
+<div class='newLink-form-holder'>
+  <div class='newLink-form'>
 <?php
 echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
 echo $this->Form->inpput('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
@@ -6,8 +8,10 @@ echo $this->Form->input('description',array('type'=>'text'));
 echo $this->Form->input('image', array('label' => 'Remote URL'));
 echo $this->Form->submit('Make',array('class' => 'btn'));
 ?>
+</div>
 <a href="/links/index">Go Index</a>
 <div id="responseSuccess"></div>
+</div>
 
 <script type="text/javascript">
 
