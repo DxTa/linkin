@@ -103,8 +103,16 @@
         <p> You can <b>Linkin</b> URLs by using this <b>bookmarlet</b> on your browser</p>
         <div class='bookmarklet-icons'>
       <a href="javascript:{
+        var popup = document.createElement('div');
+        var div_logo = document.createElement('div');
+        div_logo.className += 'linkin-logo';
+        im_lo = document.createElement('img');
+        im_lo.src = 'http://localhost:3000/app/webroot/img/simple_logo.png';
+        div_logo.appendChild(im_lo);
+        popup.className += 'linkin-popup';
         var f = document.createElement('form');
         var div = document.createElement('div');
+        var label;
         div.className += 'link-images-holder';
         var div_h = document.createElement('div');
         div_h.className += 'linkin-form';
@@ -121,7 +129,24 @@
         im.name = 'data[Link][image]';
         im.value = 'ee';
         f.appendChild(u);
-        f.innerHTML +=  '<input type=\'text\' name=\'data[Link][description]\'/><br />';
+        var inp_box = document.createElement('select');
+        inp_box.name = 'data[Link][category_id]';
+        c_names = ['The World','Sport','Weather','Bussiness','Technology', 'Science', 'Entertainment & Art', 'Learning', 'Health', 'gag'];
+        var option;
+        c_names.forEach(function(e,index) {
+          option = document.createElement('option');
+          option.innerHTML = e;
+          option.value = index + 1;
+          inp_box.add(option,null);
+        });
+        label = document.createElement('label');
+        label.innerHTML = 'Channel';
+        f.appendChild(label);
+        f.appendChild(inp_box);
+        label = document.createElement('label');
+        label.innerHTML = 'Description';
+        f.appendChild(label);
+        f.innerHTML +=  '<textarea cols=\'20\' rows=\'10\' name=\'data[Link][description]\'></textarea><br />';
         var bt = document.createElement('input');
         bt.type = 'submit';
         im.value = 'click';
@@ -130,36 +155,112 @@
         var arr = [];
         for(var i = nl.length; i--; arr.unshift(nl[i]));
         arr.forEach(function(e) {
-          window.im = im;
-          img = document.createElement('img');
-          img.src = e.src;
-          img.className +='linkin-img';
-          img.onclick = function() {
-            nl_c = document.getElementsByClassName('linkin-img-chosen');
-            arr = [];
-            for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
-            arr.forEach(function(e) {
-              e.className = 'linkin-img';
-            });
+          a = /.*\.(\w+)/.exec(e.src);
+          if(a && a[1] != 'gif') {
+            img = document.createElement('img');
+            img.src = e.src;
+            img.className +='linkin-img';
+            img.onclick = function() {
+              nl_c = document.getElementsByClassName('linkin-img-chosen');
+              arr = [];
+              for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
+              arr.forEach(function(e) {
+                e.className = 'linkin-img';
+              });
 
-            this.className += ' linkin-img-chosen';
-            f.appendChild(im);
-            im.value = this.src;
+              this.className += ' linkin-img-chosen';
+              f.appendChild(im);
+              im.value = this.src;
 
-          };
-          div.appendChild(img);
+            };
+            div.appendChild(img);
+          }
         });
         var css = document.createElement('style');
         css.type = 'text/css';
         css.innerHTML = '
-          .linkin-form {
+          .linkin-popup {
             position: absolute;
             top: 0px;
             height: 300px;
             width: 100%;
-            background: #DADADA;
+            background: rgba(218, 218, 218, 0.84);
             z-index: 999;
+            height: 2000px;
           }
+          .linkin-form {
+            width: 940px;
+            -webkit-animation: bounceIn 0.5s none;
+            -moz-animation: bounceIn 0.5s none;
+            -ms-animation: bounceIn 0.5s none;
+            -o-animation: bounceIn 0.5s none;
+            animation: bounceIn 0.5s none;
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+            -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 1;
+            background: #fff;
+            margin: 80px auto 0;
+            padding-bottom: 20px;
+            padding-top: 10px;
+          }
+.linkin-form .linkin-logo {
+  text-align: left;
+  padding-left: 23px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(173, 173, 173, 0.61);
+}
+.linkin-form form {
+  width: 410px;
+  display: inline-block;
+  text-align: left;
+}
+.linkin-form .link-images-holder {
+margin-top: 10px;
+width: 525px;
+vertical-align: top;
+display: inline-block;
+border-left: 1px solid rgba(173, 173, 173, 0.61);
+min-height: 240px;
+}
+.linkin-form label {
+  display: inline-block;
+  width: 100px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+.linkin-form select,textarea {
+  width: 230px;
+  margin-left: 10px;
+  margin-top: 20px;
+  resize: none;
+}
+.linkin-form textarea {
+  margin-top: 20px;
+  vertical-align: top;
+}
+
+.linkin-form input[type=\'submit\'] {
+margin-left: 130px;
+margin-top: 20px;
+}
+
           .linkin-img {
             width: 50px;
             height: 50px;
@@ -170,10 +271,12 @@
             border: 2px solid red;
           }
         ';
+        div_h.appendChild(div_logo);
         div_h.appendChild(f);
         div_h.appendChild(div);
+        popup.appendChild(div_h);
         document.body.appendChild(css);
-        document.body.appendChild(div_h);
+        document.body.appendChild(popup);
       }">LinkIn</a>
         </div>
 
