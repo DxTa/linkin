@@ -16,7 +16,6 @@ class Link extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'description';
   public $recursive = 2;
 
 /**
@@ -50,14 +49,14 @@ class Link extends AppModel {
   );
 	public $validate = array(
 		'url' => array(
-			// 'minlength' => array(
-        // 'rule' => array('minlength',),
+      'minlength' => array(
+        'rule' => array('minlength',3),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			// ),
+      ),
 		),
 		'description' => array(
 			'minlength' => array(
@@ -69,6 +68,14 @@ class Link extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+    // 'category_id' => array(
+        // 'required' => true,
+        // 'message' => 'Select one category',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		// ),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

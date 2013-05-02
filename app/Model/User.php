@@ -60,7 +60,7 @@ class User extends AppModel {
       'email' => array(
         'rule' => array('email'),
         //'message' => 'Your custom message here',
-        //'allowEmpty' => false,
+        'allowEmpty' => false,
         //'required' => false,
         //'last' => false, // Stop validation after this rule
         //'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -166,6 +166,19 @@ class User extends AppModel {
       // 'conditions' => '',
       // 'fields' => '',
       'order' => 'Comment.created_at DESC',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
+    ),
+    'Link' => array(
+      'className' => 'Link',
+      'foreignKey' => 'owner_id',
+      'dependent' => true,
+      // 'conditions' => '',
+      // 'fields' => '',
+      'order' => 'Link.created_at DESC',
       // 'limit' => '',
       // 'offset' => '',
       // 'exclusive' => '',

@@ -7,7 +7,7 @@
     <td><?php echo h($user['User']['sex']); ?>&nbsp;</td>
     <td><?php echo h($user['User']['dob']); ?>&nbsp;</td>
     <td>
-      <?php echo $this->Html->link($user['Image']['url'], array('controller' => 'images', 'action' => 'view', $user['Image']['id'])); ?>
+      <img src="<?php echo $current_user['User']['avatar']?>" />
     </td>
     <td><?php echo h($user['User']['active']); ?>&nbsp;</td>
     <td><?php echo h($user['User']['admin']); ?>&nbsp;</td>
