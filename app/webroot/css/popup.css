@@ -17,7 +17,7 @@
 }
 
 .popup-content {
-
+  margin: 50px auto 0;
 }
 
 .login-form-holder {
@@ -46,8 +46,8 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 1;
   background: #fff;
-  margin: 150px auto 0;
   text-align: center;
+  margin: 100px auto;
 }
 
 .login-form {
@@ -172,4 +172,72 @@ a:hover {
 
 .register-form .date select{
   width: 70px;
+}
+
+.register-form .select {
+  display: inline-block;
+  width: 190px;
+}
+
+.register-form .select label{
+  width: 33px;
+  margin-left: 0px;
+}
+
+.register-form .select select{
+  width: 102px;
+}
+
+
+.avatar-holder {
+  height: 60px;
+  width: 50px;
+  position: relative;
+  width: 200px;
+  display: inline-block;
+}
+
+.avatar-holder .avatar-frame {
+  position: absolute;
+  left: 120px;
+  height: 60px;
+  width: 60px;
+}
+
+.avatar-holder .avatar-frame img{
+  height: 60px;
+}
+
+.avatar-holder .file input[type='file'] {
+  position: absolute;
+  top: 35px;
+  left: 120px;
+  width: 60px;
+  opacity: 0;
+}
+
+.avatar-holder .avatar-btn {
+  position: absolute;
+  left: 125px;
+  top: 40px;
+  opacity: 0.3;
+}
+
+.avatar-holder .avatar-frame:hover ~ .avatar-btn {
+  opacity: 1;
+}
+
+.avatar-holder .avatar-btn label{
+  padding: 0;
+  margin: 0;
+}
+
+.register-finish {
+  width: 330px;
+  margin: 15px auto;
+  font-size: 15px
+}
+
+.register-finish a:hover{
+  cursor: pointer;
 }
