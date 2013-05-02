@@ -14,6 +14,18 @@ class AppSchema extends CakeSchema {
         $db = ConnectionManager::getDataSource('default');
         $result = $db->query('ALTER TABLE `users` ADD `facebook_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT 0');
         break;
+      case 'categories':
+        $db = ConnectionManager::getDataSource('default');
+        $c_names = array("The World","Sport","Weather","Bussiness","Technology", "Science", "Entertainment & Art", "Learning", "Health", "gag");
+        App::uses('ClassRegistry', 'Utility');
+        $category = ClassRegistry::init('Category');
+        foreach ($c_names as $v) {
+          $category->create();
+          $category->save(
+            array('Category' => array('name' => $v))
+          );
+        }
+        break;
       }
     }
   }
@@ -68,12 +80,21 @@ class AppSchema extends CakeSchema {
   public $links = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'owner_id' => array('type' => 'integer', 'null' => false),
+    'category_id' => array('type' => 'integer', 'null' => false),
     'url' => array('type' => 'text', 'null' => true),
     'description' => array('type' => 'text', 'null' => true),
     'image' => array('type' => 'text', 'null' => true),
     'cnt_comments' => array('type' => 'integer', 'null' => true,'default' => 0),
     'cnt_likes' => array('type' => 'integer', 'null' => true,'default' => 0),
     'cnt_views' => array('type' => 'integer', 'null' => true,'default' => 0),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
+  public $categories = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'name' => array('type' => 'text', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))

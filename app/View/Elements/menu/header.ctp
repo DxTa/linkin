@@ -115,7 +115,7 @@ var showDropdown = function() {
     if($(".top-channel-box").is(":visible")) {
       $(".top-channel-box").hide();
       $(".menu-dropdown").removeClass('expand');
-      $("#content").unbind()
+      $("#content").unbind();
     }
   })
 };

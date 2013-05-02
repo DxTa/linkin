@@ -10,9 +10,16 @@
     </div>
     <div class='newLink-form'>
       <?php
+      $c = ClassRegistry::init('Category');
+      $c_result = $c->query("select id, name from categories");
+      $c_array = array_combine(Set::extract('/categories/id', $c_result), Set::extract('/categories/name', $c_result));
       echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
       echo $this->Form->input('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
-      echo $this->Form->input('url',array('type'=>'text'));
+      echo $this->Form->input('url',array('type'=>'text', 'div' => array('class' => 'urlInputDiv')));
+      echo "<div class=\"category-selector\">";
+      echo $this->Form->label('Category');
+      echo $this->Form->select('category_id',$c_array);
+      echo "</div>";
       echo $this->Form->label('description');
       echo $this->Form->textarea('description',array('rows' => 5));
       echo $this->Form->input('image', array('label' => 'Remote URL', 'type' => 'hidden'));
@@ -50,7 +57,7 @@ var checkLink = function(data) {
   });
 }
 
-$('#LinkUrl').bind('paste', function () {
+$('#LinkUrl').bind('change', function () {
   var element = this;
   setTimeout(function () {
     var text = $(element).val();
