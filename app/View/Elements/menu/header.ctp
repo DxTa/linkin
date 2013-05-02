@@ -91,19 +91,19 @@
 </div>
 <script type="text/javascript">
 var newLink = function() {
-  $(".popup").show();
+  showPopup();
   var test = <?php echo json_encode($this->element('popup/new_link')); ?>;
   $(".popup .popup-content").html(test);
 };
 
 var showLogin = function() {
-  $(".popup").show();
+  showPopup();
   var test = <?php echo json_encode($this->element('popup/login')); ?>;
   $(".popup .popup-content").html(test);
 };
 
 var showRegister = function() {
-  $(".popup").show();
+  showPopup();
   var test = <?php echo json_encode($this->element('popup/register')); ?>;
   $(".popup .popup-content").html(test);
 };
