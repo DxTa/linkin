@@ -17,7 +17,7 @@
       $this->Js->get('#LinkMakeForm')->event(
           'submit',
           $this->Js->request(
-            array('action' => 'make'),
+            array('controller' => 'links', 'action' => 'make'),
             array(
                     'data' => $data,
                     'async' => true,
