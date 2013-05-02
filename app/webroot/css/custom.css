@@ -9,6 +9,15 @@ body {
   padding: 0;
 }
 
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -721,4 +730,146 @@ overflow: hidden;
 .top-links-home .side-link .right img.thumb{
   border: 1px solid #B7CCE0;
   padding: 1px 1px;
+}
+
+.page-wrap.ViewLink > .page-content {
+  background: none;
+}
+
+
+.page-wrap.ViewLink > .page-content .left-content {
+  padding-top: 15px;
+}
+
+.page-wrap.ViewLink > .page-content .link-content {
+  vertical-align: top;
+  padding: 0px !important;
+  display: inline-block;
+  width: 400px;
+}
+
+.page-wrap.ViewLink .page-content .thumb {
+  border: 1px solid #ccc;
+  padding: 2px;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0px 15px;
+}
+
+.page-wrap.ViewLink .page-content .thumb img {
+  border: none;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments h2.lineCenterTitle {
+  display: block !important;
+  border: 0;
+  margin: 0 !important;
+  float: none !important;
+  padding: 10px 0 5px !important;
+  position: relative;
+  top: 2px;
+  background: #fff none;
+  color: #999;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments h2.lineCenterTitle .line {
+  display: block;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments h2.lineCenterTitle .wrapper {
+  padding: 0 5px;
+  display: inline-block;
+  background: #ffffff;
+  position: relative;
+  top: -10px;
+  left: 60px;
+}
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist {
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block {
+  display: block;
+  padding: 8px 0 10px 0;
+  position: relative;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head {
+  padding: 0 0 0 62px;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head .username {
+  float: left;
+  margin-right: 2px;
+  color: #363636;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head .username .user-avatar{
+  border: 1px solid #ccc !important;
+  padding: 1px;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 48px;
+  height: 48px;
+}
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head .timeago {
+  color: #999 !important;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-body {
+  padding: 0px 45px 0 62px;
+  min-height: 34px;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-action {
+  font-size: 11px;
+  padding-right: 6px;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-action .c-reply {
+  background-position: -25px -250px;
+  background: url(../img/linkhay-sprites-v3.png) no-repeat scroll 0 -250px transparent;
+  display: block;
+  width: 25px;
+  height: 19px;
+  text-indent: -2000em;
+  float: right;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-action .c-reply:hover {
+  background-position: -25px -269px;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .recomments {
+  background: url(../img/bg_c_child_block.png) no-repeat scroll left top transparent;
+  padding: 7px 0 0;
+  margin: 0 0 0 17px;
+}
+
+
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .recomments .recomment-block {
+  background: url(../img/bg-li-cmt-new.png) repeat-x center bottom #F4F4F4;
+  list-style: none;
+  padding: 6px;
+  border-left: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
+  min-height: 50px;
+  border-top: 0;
+  position: relative;
 }

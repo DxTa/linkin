@@ -16,7 +16,7 @@ class Link extends AppModel {
  *
  * @var string
  */
-  public $recursive = 2;
+  public $recursive = 3;
 
 /**
  * Validation rules

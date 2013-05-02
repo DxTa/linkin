@@ -54,4 +54,11 @@ class AppHelper extends Helper {
     return $results;
   }
 
+  public function getDomainFromUrl($url) {
+    preg_match("/^(http:\/\/)?([^\/]+)/i",$url, $matches);
+    $host = $matches[2];
+    preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
+    return $matches[0];
+  }
+
 }

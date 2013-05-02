@@ -24,13 +24,13 @@ class RecommentsController extends AppController {
 
       $this->Recomment->create();
       if($this->Recomment->save($this->request->data)) {
-        $this->loadModel('Link');
-        $this->loadModel('Comment');
+        // $this->loadModel('Link');
+        // $this->loadModel('Comment');
 
-        $comment = $this->Comment->findById($this->request->data['Recomment']['comment_id']);
-        $link = $this->Comment->findById($comment['Comment']['id']);
-        $this->Link->id = $link['Link']['id'];
-        $this->Link->saveField('cnt_comments',$link['Link']['cnt_comments'] + 1);
+        // $comment = $this->Comment->findById($this->request->data['Recomment']['comment_id']);
+        // $link = $this->Comment->findById($comment['Comment']['id']);
+        // $this->Link->id = $link['Link']['id'];
+        // $this->Link->saveField('cnt_comments',$link['Link']['cnt_comments'] + 1);
 
       } else {
         $response['success'] = false;
