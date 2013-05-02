@@ -68,9 +68,9 @@
 var hidePopup = function() {
   $(".popup").hide();
   $('body').css('overflow','');
-}
+};
 var showPopup = function() {
   $(".popup").show();
   $('body').css('overflow','hidden');
-}
+};
 </script>

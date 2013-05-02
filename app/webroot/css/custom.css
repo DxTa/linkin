@@ -413,6 +413,11 @@ body {
   float: right;
   padding: 0 1px;
 }
+.left-set {
+  float: left;
+  width: 30px;
+  text-align: center;
+}
 
 .link-thumb a {
 
@@ -548,6 +553,11 @@ body {
   cursor: pointer;
 }
 
+
+.link-content .link-stats .fb_iframe_widget {
+  vertical-align: 3px;
+}
+
 .top-banner {
   margin: auto;
   padding: 10px 5px;
@@ -568,4 +578,147 @@ body {
   float: left;
   padding-left: 35px;
   width: 300px;
+  padding-top: 15px;
+}
+
+.page-content .right-content h2{
+  line-height: 20px;
+}
+
+
+.search-box .search-btn {
+  border: 1px solid #C2C0C0;
+  color: #898989;
+  cursor: pointer;
+  display: inline-block;
+  height: 29px;
+  border-left: 0 !important;
+  font-weight: lighter;
+}
+
+.search-box input[type='text'] {
+  float: left;
+  border: 1px #c2c0c0 solid;
+  color: #c2c0c0;
+  padding: 5px;
+  font-size: 16px;
+  font-family: tahoma;
+  width: 258px;
+  background: #FAF7F7;
+  border-radius: 0;
+  height: 19px;
+}
+
+.search-box .search-btn input[type='submit'] {
+  border: none;
+  text-indent: 100px;
+  margin: 8px;
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+  background: url("../img/linkhay-sprites.png") no-repeat;
+  background-position: -80px -16px;
+}
+
+.divide-wrap {
+  border-top: 2px solid #ccc;
+  position: relative;
+  margin-top: 15px;
+  padding: 8px 0 12px;
+  background: url(../img/bg_bottom_suggest.png) repeat-x bottom;
+}
+
+.bookmarklet-holder {
+border: 1px solid #E2E2E2;
+margin: 25px 0 0 !important;
+float: left;
+width: 100%;
+}
+
+.w-header {
+border-bottom: 1px solid #E9E9E9;
+margin: 0;
+padding: 0;
+}
+
+.w-header h2{
+color: #CD0607;
+font-family: tahoma;
+font-size: 14px;
+font-weight: bold;
+margin: 0;
+padding: 9px 7px;
+}
+
+.bookmarklet-holder div.bookmarklets-info {
+padding: 9px 7px 0;
+}
+
+.bookmarklet-holder div.bookmarklets-info p{
+margin-bottom: 13px;
+}
+
+.bookmarklet-holder div.bookmarklets-info .bookmarklet-icons{
+margin-bottom: 7px;
+position: relative;
+color: white;
+background-image: url('../img/bookmarklet_link.png');
+width: 91px;
+height: 24px;
+}
+
+.bookmarklet-holder div.bookmarklets-info .bookmarklet-icons a{
+  display:block;
+  width: 91px;
+  height: 24px;
+  opacity: 0;
+}
+
+.top-links-home {
+border: 1px solid #E2E2E2;
+margin: 25px 0 0 !important;
+float: left;
+width: 100%;
+
+}
+.top-links-home .link-feature {
+padding: 9px 7px 0;
+}
+
+.top-links-home .side-link {
+padding: 5px 0 5px 0;
+font-size: 12px;
+line-height: 17px;
+border-bottom: 1px solid #E1E1E1;
+}
+
+
+.top-links-home .side-link .like-count{
+color: #c00607;
+font-size: 18px;
+}
+.top-links-home .side-link .mark{
+color: #D7D7D7;
+font-size: 11px;
+text-transform: uppercase;
+}
+
+.top-links-home .side-link .right{
+margin-left: 35px;
+float: none;
+overflow: hidden;
+}
+
+.top-links-home .side-link .right .title{
+  padding-left: 5px;
+  width: 225px;
+}
+
+.top-links-home .side-link .right .title a{
+  color: #333 !important;
+}
+
+.top-links-home .side-link .right img.thumb{
+  border: 1px solid #B7CCE0;
+  padding: 1px 1px;
 }
