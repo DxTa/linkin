@@ -86,54 +86,61 @@ class Link extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-	);
+    'Category' => array(
+      'className' => 'Category',
+      'foreignKey' => 'category_id',
+      'conditions' => '',
+      'fields' => '',
+      'order' => ''
+    ),
+  );
 
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'UserLinkLike' => array(
-			'className' => 'UserLinkLike',
-			'foreignKey' => 'link_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'UserLinkView' => array(
-			'className' => 'UserLinkView',
-			'foreignKey' => 'link_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+  /**
+   * hasMany associations
+   *
+   * @var array
+   */
+  public $hasMany = array(
+    'UserLinkLike' => array(
+      'className' => 'UserLinkLike',
+      'foreignKey' => 'link_id',
+      'dependent' => false,
+      'conditions' => '',
+      'fields' => '',
+      'order' => '',
+      'limit' => '',
+      'offset' => '',
+      'exclusive' => '',
+      'finderQuery' => '',
+      'counterQuery' => ''
+    ),
+    'UserLinkView' => array(
+      'className' => 'UserLinkView',
+      'foreignKey' => 'link_id',
+      'dependent' => false,
+      'conditions' => '',
+      'fields' => '',
+      'order' => '',
+      'limit' => '',
+      'offset' => '',
+      'exclusive' => '',
+      'finderQuery' => '',
+      'counterQuery' => ''
     ),
     'Comment' => array(
-			'className' => 'Comment',
-			'foreignKey' => 'link_id',
-			'dependent' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => 'created_at',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+      'className' => 'Comment',
+      'foreignKey' => 'link_id',
+      'dependent' => true,
+      'conditions' => '',
+      'fields' => '',
+      'order' => 'created_at',
+      'limit' => '',
+      'offset' => '',
+      'exclusive' => '',
+      'finderQuery' => '',
+      'counterQuery' => ''
     )
-	);
+  );
 
   public $hasAndBelongsToMany = array(
     'likedUsers' => array(

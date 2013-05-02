@@ -27,7 +27,7 @@ class LinksController extends AppController {
     if($this->request->is('post')) {
       $this->Link->create();
       if($this->Link->save($this->request->data)) {
-
+        $this->redirect(array('action' => 'view', $this->Link->id));
       } else {
 
       }
