@@ -8,7 +8,7 @@
   		'appId' => '174719622682850',
   		'apiKey' => '174719622682850',
   		'secret' => 'ff6fbd01bc139a4b4f658ae98983a668',
-  		'cookie' => true,
+      'cookie' => true,
   		'locale' => 'en_US',
   		)
   	);
