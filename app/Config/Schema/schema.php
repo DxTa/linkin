@@ -83,6 +83,7 @@ class AppSchema extends CakeSchema {
     'category_id' => array('type' => 'integer', 'null' => false),
     'url' => array('type' => 'text', 'null' => true),
     'description' => array('type' => 'text', 'null' => true),
+    'message' => array('type' => 'text', 'null' => true),
     'image' => array('type' => 'text', 'null' => true),
     'cnt_comments' => array('type' => 'integer', 'null' => true,'default' => 0),
     'cnt_likes' => array('type' => 'integer', 'null' => true,'default' => 0),

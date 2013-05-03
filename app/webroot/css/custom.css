@@ -498,6 +498,20 @@ body {
 .link-content h2 a{
   color: #444;
 }
+
+.link-content h2 .author-mess {
+  font-size: 12px;
+  font-weight: normal;
+  color: #164673;
+}
+
+.link-content h2 .author-mess .dot {
+  font-size: 8px;
+  vertical-align: 2px;
+  color: #c00607;
+  margin: 0 2px 0 0;
+}
+
 .link-content .link-meta {
   color: #959595;
   height: 17px;
@@ -643,42 +657,42 @@ body {
 }
 
 .bookmarklet-holder {
-border: 1px solid #E2E2E2;
-margin: 25px 0 0 !important;
-float: left;
-width: 100%;
+  border: 1px solid #E2E2E2;
+  margin: 25px 0 0 !important;
+  float: left;
+  width: 100%;
 }
 
 .w-header {
-border-bottom: 1px solid #E9E9E9;
-margin: 0;
-padding: 0;
+  border-bottom: 1px solid #E9E9E9;
+  margin: 0;
+  padding: 0;
 }
 
 .w-header h2{
-color: #CD0607;
-font-family: tahoma;
-font-size: 14px;
-font-weight: bold;
-margin: 0;
-padding: 9px 7px;
+  color: #CD0607;
+  font-family: tahoma;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  padding: 9px 7px;
 }
 
 .bookmarklet-holder div.bookmarklets-info {
-padding: 9px 7px 0;
+  padding: 9px 7px 0;
 }
 
 .bookmarklet-holder div.bookmarklets-info p{
-margin-bottom: 13px;
+  margin-bottom: 13px;
 }
 
 .bookmarklet-holder div.bookmarklets-info .bookmarklet-icons{
-margin-bottom: 7px;
-position: relative;
-color: white;
-background-image: url('../img/bookmarklet_link.png');
-width: 91px;
-height: 24px;
+  margin-bottom: 7px;
+  position: relative;
+  color: white;
+  background-image: url('../img/bookmarklet_link.png');
+  width: 91px;
+  height: 24px;
 }
 
 .bookmarklet-holder div.bookmarklets-info .bookmarklet-icons a{
@@ -689,38 +703,38 @@ height: 24px;
 }
 
 .top-links-home {
-border: 1px solid #E2E2E2;
-margin: 25px 0 0 !important;
-float: left;
-width: 100%;
+  border: 1px solid #E2E2E2;
+  margin: 25px 0 0 !important;
+  float: left;
+  width: 100%;
 
 }
 .top-links-home .link-feature {
-padding: 9px 7px 0;
+  padding: 9px 7px 0;
 }
 
 .top-links-home .side-link {
-padding: 5px 0 5px 0;
-font-size: 12px;
-line-height: 17px;
-border-bottom: 1px solid #E1E1E1;
+  padding: 5px 0 5px 0;
+  font-size: 12px;
+  line-height: 17px;
+  border-bottom: 1px solid #E1E1E1;
 }
 
 
 .top-links-home .side-link .like-count{
-color: #c00607;
-font-size: 18px;
+  color: #c00607;
+  font-size: 18px;
 }
 .top-links-home .side-link .mark{
-color: #D7D7D7;
-font-size: 11px;
-text-transform: uppercase;
+  color: #D7D7D7;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
 .top-links-home .side-link .right{
-margin-left: 35px;
-float: none;
-overflow: hidden;
+  margin-left: 35px;
+  float: none;
+  overflow: hidden;
 }
 
 .top-links-home .side-link .right .title{

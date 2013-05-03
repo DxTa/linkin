@@ -23,6 +23,10 @@
       <div class="link-content">
         <h2>
           <a href="<?php echo $link['Link']['url'] ?>"  target="_blank" id="<?php echo $link['Link']['id'] ?>" onclick="viewCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"><?php echo $link['Link']['description'] ?></a>
+          <span class="author-mess">
+            <span class="dot">*</span>
+            <?php echo $link['Link']['message'] ?>
+          </span>
         </h2>
         <div class='link-meta'>
           <span class='user-info'>

@@ -36,6 +36,8 @@
       echo "</div>";
       echo $this->Form->label('description');
       echo $this->Form->textarea('description',array('rows' => 5));
+      echo $this->Form->label('message');
+      echo $this->Form->textarea('message',array('rows' => 2));
       echo $this->Form->input('image', array('label' => 'Remote URL', 'type' => 'hidden'));
       echo $this->Form->submit('Linkin');
       echo $this->Form->end();
