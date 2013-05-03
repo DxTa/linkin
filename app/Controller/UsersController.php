@@ -176,4 +176,12 @@ class UsersController extends AppController {
     $this->Facebook->share('http://vnexpress.net');
   }
 
+  function admin() {
+    if ($this->Auth->user('admin') == 0) {
+          $this->Session->setFlash('Only admin can delete.');
+          $this->redirect($this->referer());
+        }
+
+  }
+
 }

@@ -3,7 +3,7 @@
     <a href='/'> Linkin</a>
 </h1>
 <ul class="menu-bar">
-  <li> <a href='#'> New Links</a></li>
+  <li> <a href='/links/news'> New Links</a></li>
   <li class='line'>|</li>
   <li> <a href='#'> Friends </a></li>
 
@@ -33,7 +33,7 @@
       OR
       <a href='#' onclick='showRegister()'>Register</a>
       <?php } else {?>
-      <a href='#'>
+      <a href='/users/view/<?php echo $current_user['User']['id'] ?>'>
         <img src="<?php echo $current_user['User']['avatar']?>" class='small-avatar' />
         <?php echo $current_user['User']['username'] ?>
       </a>
@@ -45,6 +45,9 @@
           <div class='user-menu-top'>
             <ul>
               <li><a href='/users/edit/<?php echo $current_user['User']['id'] ?>'>Account Settings</a></li>
+              <?php if($current_user['User']['admin'] == 1) : ?>
+              <li><a href='/users/admin'>Admin Settings</a></li>
+              <?php endif ?>
               <li>
                 <?php if ($current_user) { ?>
                     <?php if($current_user['User']['facebook_id'] != 0) { ?>

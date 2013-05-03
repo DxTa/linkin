@@ -102,5 +102,29 @@ class LinksController extends AppController {
 
   }
 
+  public function manage() {
+    $this->set('links', $this->Link->find('all',array(
+      'order' => array('Link.updated_at DESC'),
+    )));
+  }
+
+
+  function delete($id) {
+    // check if admin
+    if ($this->Auth->user('admin') == 0) {
+      $this->Session->setFlash('Only admin can delete.');
+      $this->redirect($this->referer());
+    }
+
+    if ($this->request->is('get')) {
+      throw new MethodNotAllowedException();
+    }
+
+    if ($this->Link->delete($id)) {
+      $this->Session->setFlash('The Link with id: ' . $id . ' has been deleted.');
+      $this->redirect(array('action' => 'manage'));
+    }
+  }
+
 
 }
