@@ -1016,3 +1016,36 @@ body {
   height: 100px;
   background: #fff;
 }
+
+
+.admin-list {
+  width: 500px;
+  margin: 100px auto;
+  list-style: none;
+}
+.admin-list li {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 1;
+  background: #fff;
+  width: 450px;
+  margin: 20px auto;
+  padding: 10px;
+}
+.admin-list li a {
+  font-size: 30px;
+  color: #444444 !important;
+  font-weight: bold;
+}
+.admin-list li a img {
+  width: 80px;
+  margin-left: 20px;
+  margin-right: 50px;
+}

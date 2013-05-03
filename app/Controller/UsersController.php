@@ -178,9 +178,9 @@ class UsersController extends AppController {
 
   function admin() {
     if ($this->Auth->user('admin') == 0) {
-          $this->Session->setFlash('Only admin can delete.');
-          $this->redirect($this->referer());
-        }
+        $this->Session->setFlash('Only admin can delete.');
+        $this->redirect($this->referer());
+      }
 
   }
 
