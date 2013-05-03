@@ -14,6 +14,7 @@ class UsersController extends AppController {
     Security::setHash('sha1');
     $this->Auth->allow('register');
     $this->Auth->allow('login');
+    $this->Auth->allow('syncFacebook');
     // $this->Auth->allow('index');
     $this->Auth->allow('verify');
     $this->set('defaultSex', $this->defaultSex);
@@ -60,6 +61,8 @@ class UsersController extends AppController {
 
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
+        debug($this->Auth->User());
+        die;
         $this->redirect($this->Auth->redirect());
       } else {
         $this->Session->setFlash(__('Invalid username or password, try again'));
@@ -68,8 +71,16 @@ class UsersController extends AppController {
   }
 
   function logout() {
-    // $this->Session->destroy();
-    $this->redirect($this->Auth->logout());
+    if ($this->Connect->FB->getUser() == 0){
+      $this->redirect($this->Auth->logout());
+    }else{
+      //ditch FB data for safety
+      $this->Connect->FB->destroysession();
+      //hope its all gone with this
+      session_destroy();
+      //logout and redirect to the screen that you usually do.
+      $this->redirect($this->Auth->logout());
+    }
   }
 
   function register() {
@@ -95,6 +106,10 @@ class UsersController extends AppController {
         $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
       }
     }
+  }
+
+  function syncFacebook() {
+    $this->Connect->__syncFacebookUser();
   }
 
   function verify() {
@@ -178,9 +193,9 @@ class UsersController extends AppController {
 
   function admin() {
     if ($this->Auth->user('admin') == 0) {
-        $this->Session->setFlash('Only admin can delete.');
-        $this->redirect($this->referer());
-      }
+      $this->Session->setFlash('Only admin can delete.');
+      $this->redirect($this->referer());
+    }
 
   }
 

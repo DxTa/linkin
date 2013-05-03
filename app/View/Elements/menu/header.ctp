@@ -50,11 +50,7 @@
               <?php endif ?>
               <li>
                 <?php if ($current_user) { ?>
-                    <?php if($current_user['User']['facebook_id'] != 0) { ?>
-                    <?php  echo $this->Facebook->logout(array('label' => 'Logout', 'redirect' => array('controller' => 'users', 'action' => 'logout')));?>
-                    <?php } else { ?>
                     <a href='/users/logout'>Logout</a>
-                    <?php } ?>
                 <?php } ?>
               </li>
             </ul>

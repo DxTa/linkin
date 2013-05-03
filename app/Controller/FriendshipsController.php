@@ -11,7 +11,10 @@ class FriendshipsController extends AppController {
       $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
       $this->autoLayout = false;
       $this->autoRender = false;
-      $behaviors = $this->Friendship->Behaviors->loaded();
+      // $this->Friendship->Behaviors->load('StateMachine');
+      // $behaviors = $this->Friendship->Behaviors->loaded();
+      // debug($behaviors);
+      // die;
       $this->Friendship->create();
       if ($this->Friendship->save($this->request->data)) {
         $response = array('success' => true);
