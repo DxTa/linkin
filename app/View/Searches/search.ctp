@@ -12,7 +12,7 @@
             <a href='#'>
               <img src='/app/webroot/img/rss.png'/>
             </a>
-            <a href='#' class='a-active'>
+            <a href='/links/index'>
               Hot Links
             </a>
             |

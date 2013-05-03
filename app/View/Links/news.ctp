@@ -97,9 +97,10 @@
 
     <div class='right-content'>
       <div class='search-box'>
-        <input type='text' />
+        <?php echo $this->Form->create('Search',array('controller'=>'searches','action'=>'search')) ?>
+        <?php echo $this->Form->input('keyword',array('type'=>'text')) ?>
         <span class='search-btn'>
-          <input type='submit' value='search'/>
+          <?php echo $this->Form->submit('search',array()) ?>
         </span>
       </div>
       <div class='divide-wrap'></div>
