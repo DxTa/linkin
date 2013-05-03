@@ -109,7 +109,8 @@ class UsersController extends AppController {
   }
 
   function syncFacebook() {
-    $this->Connect->__syncFacebookUser();
+    $this->Connect->noAuth = false;
+    $this->Connect->startup($this->Controller);
   }
 
   function verify() {
