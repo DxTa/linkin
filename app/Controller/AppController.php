@@ -50,7 +50,9 @@ class AppController extends Controller {
       // $this->redirect($this->Auth->logout());
     // }
     $this->loadModel('User');
+    $this->loadModel('Category');
     $this->set('current_user', $this->User->findByEmail($this->Auth->User('email')));
+    $this->set('channels',$this->Category->find('all',array()));
   }
 
   // public function isAuthorized($user) {

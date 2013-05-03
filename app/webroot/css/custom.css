@@ -169,7 +169,7 @@ body {
   padding: 6px;
   position: absolute;
   top: 39px;
-  left: -642px;
+  left: -586px;
   text-align: left;
 }
 .top-channel-box .top-channel-box-inner {
@@ -219,6 +219,11 @@ body {
   background: #fff;
   padding: 12px;
   position: relative;
+}
+.user-channel-top .top-channel-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 325px;
 }
 .user-channel-top .head-menu {
   display: block;
@@ -931,8 +936,69 @@ overflow: hidden;
   padding: 0 0 0 5px;
 }
 
-
 .page-wrap.ViewLink .page-content .comment-form .titleReply.new-comment .title {
   color: white;
 }
 
+.user-edit-form {
+  display: block;
+  word-spacing: -0.43em;
+  padding: 50px;
+}
+
+.user-edit-form label {
+  width: 160px;
+  padding: 15px;
+  display: inline-block;
+}
+
+.user-edit-form .date select{
+  width: 71px;
+}
+
+.user-edit-form .avatar-frame {
+  left: 190px !important;
+}
+
+.user-edit-form .avatar-btn {
+  left: 195px !important;
+}
+
+.user-edit-form .file input[type='file'] {
+  left: 190px !important;
+}
+
+.user-edit-form input[type='submit'] {
+  width: 100px;
+  margin: 20px 0 0 15px;
+}
+
+.links-manage {
+  width: 1000px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+.links-manage h1 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.links-manage table {
+  width: 1000px;
+  margin: 20px auto 0;
+}
+
+.links-manage table tr {
+
+}
+
+.links-manage table td {
+  width: 100px;
+  text-align: center;
+  height: 100px;
+  background: #fff;
+}

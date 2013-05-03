@@ -22,18 +22,18 @@
           </h2>
         </div>
         <ul class='news-list'>
-          <?php foreach ($links as $link): ?>
-            <li id='link_<?php echo $link['Link']['id'] ?>'>
+          <?php foreach ($category['links'] as $link): ?>
+            <li id='link_<?php echo $link['id'] ?>'>
               <div class='link-item clearfix'>
                 <div class='link-thumb right-set'>
-                  <a href="/links/view/<?php echo  $link['Link']['id']?>" ><img src="<?php echo $link['Link']['image'] ?>" ></a>
+                  <a href="/links/view/<?php echo  $link['id']?>" ><img src="<?php echo $link['image'] ?>" ></a>
                 </div>
                 <div class='link-like'>
-                  <a href="/links/view/<?php echo  $link['Link']['id']?>" class='like-count'>
-                      <span id="link_likes_<?php echo $link['Link']['id'] ?>"><?php echo $link['Link']['cnt_likes'] ?></span>
+                  <a href="/links/view/<?php echo  $link['id']?>" class='like-count'>
+                      <span id="link_likes_<?php echo $link['id'] ?>"><?php echo $link['cnt_likes'] ?></span>
                   </a>
                   <?php if($current_user) : ?>
-                  <a href='#' class='vote' onclick="likeCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"  >
+                  <a href='#' class='vote' onclick="likeCreate(<?php echo $link['id'] ?>,<?php echo $current_user['User']['id'] ?>)"  >
                   <?php else : ?>
                   <a href='#' class='vote' >
                   <?php endif ?>
@@ -44,9 +44,9 @@
                 <div class='link-content'>
                   <h2>
                     <?php if($current_user) : ?>
-                    <a href="<?php echo $link['Link']['url'] ?>"  target="_blank" id="<?php echo $link['Link']['id'] ?>" onclick="viewCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"><?php echo $link['Link']['description'] ?></a>
+                    <a href="<?php echo $link['url'] ?>"  target="_blank" id="<?php echo $link['id'] ?>" onclick="viewCreate(<?php echo $link['id'] ?>,<?php echo $current_user['User']['id'] ?>)"><?php echo $link['description'] ?></a>
                     <?php else : ?>
-                    <a href="<?php echo $link['Link']['url'] ?>"  target="_blank" id="<?php echo $link['Link']['id'] ?>" ><?php echo $link['Link']['description'] ?></a>
+                    <a href="<?php echo $link['url'] ?>"  target="_blank" id="<?php echo $link['id'] ?>" ><?php echo $link['description'] ?></a>
                     <?php endif ?>
                   </h2>
                   <div class='link-meta'>
@@ -74,15 +74,15 @@
                     </a>
                       ·
                     <a class='view-count'>
-                      <span id="link_views_<?php echo $link['Link']['id'] ?>"><?php echo $link['Link']['cnt_views'] ?></span>
+                      <span id="link_views_<?php echo $link['id'] ?>"><?php echo $link['cnt_views'] ?></span>
                       Views
                     </a>
                       ·
-                    <a class='comment-count' href="/links/view/<?php echo  $link['Link']['id']?>">
-                      <?php echo $link['Link']['cnt_comments'] ?> Comments
+                    <a class='comment-count' href="/links/view/<?php echo  $link['id']?>">
+                      <?php echo $link['cnt_comments'] ?> Comments
                     </a>
                       ·
-                    <?php echo $this->Facebook->share(Router::url(array('controller' => 'links', 'action' => 'view', $link['Link']['id'])),array('style' => 'link','label' => 'Facebook this link')); ?>
+                    <?php echo $this->Facebook->share(Router::url(array('controller' => 'links', 'action' => 'view', $link['id'])),array('style' => 'link','label' => 'Facebook this link')); ?>
                   </div>
                 </div>
               </div>

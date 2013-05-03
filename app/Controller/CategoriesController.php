@@ -22,14 +22,20 @@ class CategoriesController extends AppController {
     }
 
     $category = $this->Category->findById($id);
-    if (!$link) {
+    if (!$category) {
       throw new NotFoundException(__('Invalid link'));
     }
+    $this->loadModel('Link');
     $this->set('category', $category);
+    $this->set('top_links',$this->Link->find('all',array(
+        'order' => array('Link.cnt_likes DESC'),
+        'limit' => 10
+      )));
   }
 
   public function index() {
     $this->set('categories', $this->Category->find('all',array()));
+
   }
 
 

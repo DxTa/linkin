@@ -12,11 +12,11 @@
             <a href='#'>
               <img src='/app/webroot/img/rss.png'/>
             </a>
-            <a href='#' class='a-active'>
+            <a href='/links/index' >
               Hot Links
             </a>
             |
-            <a href='/links/news'>
+            <a href='#' class='a-active'>
               News
             </a>
           </h2>
@@ -61,16 +61,16 @@
                     </span>
                     <span class='seperator'>-</span>
                     <span class='channel'>
-                      <a href='#'>Education</a>
+                      <a href="<?php echo Router::url(array('controller' => 'categories', 'action' => 'view', $link['Category']['id'])) ?>"><?php echo $link['Category']['name'] ?></a>
                     </span>
                     <span class='seperator'>-</span>
                     <span class='domain'>
-                      <a href='#'>kenh14.vn</a>
+                      <a href="<?php echo $link['Link']['url'] ?>" target="_blank"><?php echo $this->App->getDomainFromUrl($link['Link']['url']) ?></a>
                     </span>
                   </div>
                   <div class='link-stats'>
                     <a class='timeago'>
-                      1 hours ago
+                      <?php echo $this->Time->timeAgoInWords($link['Link']['created_at'], array('format' => 'Y-m-d H:i:s', 'end' => '+1 year'))?>
                     </a>
                       ·
                     <a class='view-count'>
