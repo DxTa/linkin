@@ -1,4 +1,20 @@
-<table>
+
+<div class='links-manage'>
+<h1> User Manager </h1>
+<table border='1'>
+<tr>
+  <th>ID</th>
+  <th>Email</th>
+  <th>Username</th>
+  <th>Sex</th>
+  <th>DoB</th>
+  <th>Avatar</th>
+  <th>Friend</th>
+  <th>View</th>
+  <?php if($current_user['User']['admin'] == 1)  : ?>
+  <th>Delete</th>
+  <?php endif ?>
+</tr>
  <?php foreach ($users as $user): ?>
   <tr>
     <td><?php echo h($user['User']['id']); ?>&nbsp;</td>
@@ -9,10 +25,6 @@
     <td>
       <img src="<?php echo $current_user['User']['avatar']?>" />
     </td>
-    <td><?php echo h($user['User']['active']); ?>&nbsp;</td>
-    <td><?php echo h($user['User']['admin']); ?>&nbsp;</td>
-    <td><?php echo h($user['User']['created_at']); ?>&nbsp;</td>
-    <td><?php echo h($user['User']['updated_at']); ?>&nbsp;</td>
     <td class="actions">
       <?php if ($current_user["User"]["id"] != $user['User']['id']) {
         $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
@@ -39,10 +51,12 @@
         }
       }?>
 
-      <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-      <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-      <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
     </td>
+    <td>    <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?></td>
+    <?php if($current_user['User']['admin'] == 1)  : ?>
+    <td><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?></td>
+    <?php endif ?>
   </tr>
 <?php endforeach; ?>
 </table>
+</div>
