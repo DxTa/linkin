@@ -10,7 +10,6 @@ class Friendship extends AppModel {
 
   public $actsAs = array('StateMachine');
 
-
   public $states = array(
     'pending' => array(
       'approve' => 'approved',

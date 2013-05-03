@@ -68,7 +68,7 @@ class UsersController extends AppController {
   }
 
   function logout() {
-    $this->Session->destroy();
+    // $this->Session->destroy();
     $this->redirect($this->Auth->logout());
   }
 
@@ -121,7 +121,7 @@ class UsersController extends AppController {
     if (!$id) {
       throw new NotFoundException(__('Invalid user'));
     }
-
+    $this->User->recursive = 3;
     $user = $this->User->findById($id);
     if (!$user) {
       throw new NotFoundException(__('Invalid user'));

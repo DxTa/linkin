@@ -8,15 +8,19 @@ class FriendshipsController extends AppController {
 
   function add() {
     if ($this->request->is('post')) {
+      $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+      $this->autoLayout = false;
+      $this->autoRender = false;
+      $behaviors = $this->Friendship->Behaviors->loaded();
       $this->Friendship->create();
       if ($this->Friendship->save($this->request->data)) {
-        $this->Session->setFlash('Friend request has been sent');
-        $this->redirect($this->referer());
+        $response = array('success' => true);
+        $response['data'] = '<button class="friendship-act" user="'.$this->request->data['Friendship']['user_id'].'"friend="'.$this->request->data['Friendship']['friend_id'].'" event="pending" onclick="friendRequest(this)">Pending</button>';
       } else {
-        $validationErrors = $this->Friendship->invalidFields();
-        $this->Session->setFlash($validationErrors['user_id'][0]);
-        $this->redirect($this->referer());
+        $response = array('success' => false);
       }
+      $this->header('Content-Type: application/json');
+      echo json_encode($response);
     }
   }
 
@@ -25,23 +29,29 @@ class FriendshipsController extends AppController {
       throw new NotFoundException(__('Invalid friendship'));
     }
 
-    $friendship = $this->Friendship->findById($id);
-    if (!$friendship || ($friendship["Friendship"]["friend_id"] != $this->Auth->user('id') && $this->request->data["Friendship"]["event"] != "destroy")) { //check if current_user
-      $this->Session->setFlash('Unable to approve.');
-      $this->redirect($this->referer());
-    }
     if ($this->request->is('post') || $this->request->is('put')) {
-      $this->Friendship->id = $id;
-      if ($this->Friendship->transition($this->request->data["Friendship"]["event"])) {
-        $this->Session->setFlash('Friendship updated');
-        $this->redirect($this->referer());
+      $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+      $this->autoLayout = false;
+      $this->autoRender = false;
+      $friendship = $this->Friendship->findById($id);
+      if (!$friendship || ($friendship["Friendship"]["friend_id"] != $this->Auth->user('id') && $this->request->data["Friendship"]["event"] != "destroy")) { // current_user cannot approve frienship
+        $response = array('success' => false);
       } else {
-        $this->Session->setFlash('Unable to update.');
+        $this->Friendship->id = $id;
+        if ($this->Friendship->transition($this->request->data["Friendship"]["event"])) {
+          $response = array('success' => true);
+          if ($this->request->data['Friendship']['event'] == 'approve') {
+            $response['data'] = '<button class="friendship-act" user="'.$this->request->data['Friendship']['user_id'].'"friend="'.$this->request->data['Friendship']['friend_id'].'" event="destroy" action="edit" onclick="friendRequest(this)">Unfriend</button>';
+          } else {
+            $friend_id = $this->Auth->User('id') == $this->request->data['Friendship']['user_id'] ? $this->request->data['Friendship']['friend_id'] : $this->request->data['Friendship']['user_id'];
+            $response['data'] = '<button class="friendship-act" user="'.$this->Auth->User('id').'"friend="'.$friend_id.'" action="add" onclick="friendRequest(this)">Add Friend</button>';
+          }
+        } else {
+          $response = array('success' => false);
+        }
       }
-    }
-
-    if (!$this->request->data) {
-      $this->request->data = $friendship;
+      $this->header('Content-Type: application/json');
+      echo json_encode($response);
     }
   }
 

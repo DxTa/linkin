@@ -13,6 +13,14 @@ class AppSchema extends CakeSchema {
       case 'users':
         $db = ConnectionManager::getDataSource('default');
         $result = $db->query('ALTER TABLE `users` ADD `facebook_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT 0');
+        // App::uses('ClassRegistry', 'Utility');
+        // $user = ClassRegistry::init('User');
+        // for ($i=1; $i<5; $i++) {
+          // $user->create();
+          // $user->save(
+            // array('User' => array('username' => 'user{$i}'))
+          // );
+        // }
         break;
       case 'categories':
         $db = ConnectionManager::getDataSource('default');

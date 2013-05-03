@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class='page-wrap ViewLink'>
-  <div class='page-content border-center clearfix'>
+  <div class='page-content clearfix'>
     <div class='left-content'>
       <div class='link-like'>
         <a href="/links/view/<?php echo  $link['Link']['id']?>" class='like-count'>
