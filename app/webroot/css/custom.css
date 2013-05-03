@@ -841,7 +841,7 @@ overflow: hidden;
 
 
 .page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-action .c-reply {
-  background-position: -25px -250px;
+  background-position: -25px -250px !important;
   background: url(../img/linkhay-sprites-v3.png) no-repeat scroll 0 -250px transparent;
   display: block;
   width: 25px;
@@ -852,7 +852,7 @@ overflow: hidden;
 
 
 .page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-action .c-reply:hover {
-  background-position: -25px -269px;
+  background-position: -25px -269px !important;
 }
 
 
@@ -873,3 +873,66 @@ overflow: hidden;
   border-top: 0;
   position: relative;
 }
+
+.page-wrap.ViewLink .page-content .comment-form [id*="recomment-input-"], .page-wrap.ViewLink .page-content .comment-form [id*="comment-input"] {
+  width: 100%;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.page-wrap.ViewLink .page-content .comment-form [class*="recomment-submit-"], .page-wrap.ViewLink .page-content .comment-form [class*="comment-submit"] {
+  cursor: pointer;
+  border: 1px solid #484848;
+  background: #6C6C6C;
+  -moz-box-shadow: inset -1px 1px 0 0 #bfbfbf;
+  -webkit-box-shadow: inset -1px 1px 0 0 #BFBFBF;
+  box-shadow: inset -1px 1px 0 0 #BFBFBF;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  color: #fff;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.page-wrap.ViewLink .page-content .comment-form .bodyReply {
+  /* padding-bottom: 35px; */
+}
+
+.page-wrap.ViewLink .page-content .comment-form .bodyReply .actionReply {
+  text-align: right;
+  padding: 5px 0px 0px 0;
+  border-top: 1px solid #B7B7B7;
+}
+
+.page-wrap.ViewLink .page-content .comment-form .titleReply {
+  background-color: #D9E7F3;
+  padding:3px 1px;
+  width: 100%;
+  background: #f2f2f2;
+  box-shadow: inset 0 1px white;
+}
+
+.page-wrap.ViewLink .page-content .comment-form .titleReply.new-comment {
+  background-color: #A5CC7B;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+  padding: 3px 1px;
+}
+
+.page-wrap.ViewLink .page-content .comment-form .titleReply .title {
+  background: none;
+  border: medium none;
+  color: #50687D;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 0 0 5px;
+}
+
+
+.page-wrap.ViewLink .page-content .comment-form .titleReply.new-comment .title {
+  color: white;
+}
+

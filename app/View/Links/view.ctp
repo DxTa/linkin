@@ -68,77 +68,31 @@
           </h2>
           <ul class="commentlist">
             <?php foreach($link['Comment'] as $comment): ?>
-            <li class="comment-block">
-              <div class="c-head clearfix">
-                <strong class="username">
-                  <a href="#">
-                    <?php echo $comment['User']['username'] ?>
-                    <img src="<?php echo $comment['User']['avatar']?>" class="user-avatar" />
-                </a>
-                </strong>
-                <div class="timeago">
-                  <span style="color: #808080; vertical-align: -3px;">·</span>
-                  <span><?php echo $this->Time->timeAgoInWords($comment['created_at'], array('format' => 'Y-m-d H:i:s', 'end' => '+1 year'))?></span>
-                </div>
-              </div>
-              <div class="c-body">
-                <?php echo $comment['content']?>
-              </div>
-              <div class="c-action">
-                <a class="c-reply" href="javascript://"></a>
-                <div style="clear: both;font-size: 0; line-height: 0;height: 0"> </div>
-              </div>
-              <ul class="recomments">
-                <?php foreach($comment['Recomment'] as $recomment): ?>
-                  <li class="recomment-block">
-                    <div class="c-head">
-                      <strong class="username">
-                        <a href="#">
-                          <?php echo $recomment['User']['username'] ?>
-                          <img src="<?php echo $comment['User']['avatar']?>" class="user-avatar" />
-                        </a>
-                      </strong>
-                      <div class="timeago">
-                        <span style="color: #808080; vertical-align: -3px;">·</span>
-                        <span><?php echo $this->Time->timeAgoInWords($recomment['created_at'], array('format' => 'Y-m-d H:i:s', 'end' => '+1 year'))?></span>
-                      </div>
-                    </div>
-                    <div class="c-body">
-                      <?php echo $recomment['content']?>
-                    </div>
-                    <div class="c-action">
-                      <a class="rc-reply" href="javascript://"></a>
-                      <div style="clear: both;font-size: 0; line-height: 0;height: 0"> </div>
-                    </div>
-                  </li>
-                <?php endforeach ?>
-              </ul>
-            </li>
+              <?php echo $this->element('comment/comment-block', array('comment' => $comment, 'current_user' => $current_user)); ?>
             <?php endforeach ?>
           </ul>
         </div>
       </div>
 
-
-      <div class="comments-holder">
-      <?php foreach($link['Comment'] as $comment): ?>
-        <div class="comment-<?php echo $comment['id'] ?>-holder">
-          <?php echo $comment['content'] ?>
-          <input style="margin-left: 10px;" id= "recomment-input-<?php echo $comment['id'] ?>" />
-          <button onclick="recommentCreate(<?php echo $current_user['User']['id'] ?>,<?php echo $comment['id']?>)"> Recomment </button>
-          <div class="recomments-holder">
-          <?php foreach($comment['Recomment'] as $recomment): ?>
-            <?php echo $recomment['content'] ?>
-            <br/>
-          <?php endforeach ?>
+      <div class="comment-form">
+        <div class="titleReply new-comment">
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="title">New Comment</td>
+                        <td align="right">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bodyReply">
+          <?php echo $this->Form->textarea("comment-input", array('rows' => 3)); ?>
+          <div class="actionReply">
+            <button class="comment-submit" onclick="commentCreate(<?php echo $current_user['User']['id'] ?>,<?php echo $link['Link']['id'] ?>)"> COMMENT </button>
           </div>
         </div>
-      <?php endforeach ?>
       </div>
-      <br/>
-      <br/>
-      <input type='text' name='content' id='comment-input' />
-      <button onclick="commentCreate(<?php echo $current_user['User']['id'] ?>,<?php echo $link['Link']['id'] ?>)"> COMMENT </button>
     </div>
     <div class='right-content'>
 
@@ -162,7 +116,8 @@ var commentCreate = function(user_id,link_id) {
       data: {data: data},
       dataType: 'json',
       success: function(response,status) {
-        $(".comments-holder").append("<br>" + content);
+        $('.linkView-comments ul.commentlist').append(response.data);
+        $("#comment-input").val('');
       }
   })
 };
@@ -182,7 +137,12 @@ var recommentCreate = function(user_id,comment_id) {
       data: {data: data},
       dataType: 'json',
       success: function(response,status) {
-        $(".comment-" + comment_id + "-holder .recomments-holder").append("<br>" + content);
+        $ele = $(".linkView-comments ul.commentlist .recomments.comment-" + comment_id);
+        $ele.append(response.data);
+        if ($ele.css('display') =='none')
+          $ele.show();
+        $("#recomment-input-"+comment_id).parentsUntil('.comment-block','.comment-form').hide().siblings('.c-action').show();
+        $("#recomment-input-"+comment_id).val('');
       }
   })
 };

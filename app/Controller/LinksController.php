@@ -69,7 +69,6 @@ class LinksController extends AppController {
     }
     $response['data'] = $data;
 
-
     $this->header('Content-Type: application/json');
     echo json_encode($response);
     return;
