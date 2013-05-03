@@ -18,6 +18,9 @@ class Category extends AppModel {
  *
  * @var array
  */
+
+  public $recursive = 3;
+
 	public $validate = array(
 		'name' => array(
 			'minlength' => array(
@@ -39,7 +42,7 @@ class Category extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-    'Recomment' => array(
+    'links' => array(
       'className' => 'Link',
 			'foreignKey' => 'category_id',
 			'dependent' => true,

@@ -26,15 +26,20 @@ class LinksController extends AppController {
   public function make() {
     if($this->request->is('post')) {
       $this->Link->create();
+      $this->request->data['Link']['owner_id'] = $this->Auth->user('id');
       if($this->Link->save($this->request->data)) {
-        $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
-        $this->autoLayout = false;
-        $this->autoRender = false;
-        $response = array('success' => true);
-        $data = array('redirectURL' => "/links/view/{$this->Link->id}");
-        $response['data'] = $data;
-        $this->header('Content-Type: application/json');
-        echo json_encode($response);
+        if($this->request->is('ajax')) {
+          $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
+          $this->autoLayout = false;
+          $this->autoRender = false;
+          $response = array('success' => true);
+          $data = array('redirectURL' => "/links/view/{$this->Link->id}");
+          $response['data'] = $data;
+          $this->header('Content-Type: application/json');
+          echo json_encode($response);
+        } else {
+          $this->redirect($this->request->data['Link']['url']);
+        }
       } else {
 
       }
@@ -76,11 +81,25 @@ class LinksController extends AppController {
   }
 
   public function index() {
-    $this->set('links', $this->Link->find('all',array()));
+    $this->set('links', $this->Link->find('all',array(
+      'conditions' => array('Link.cnt_likes >=' => 5),
+      'order' => array('Link.updated_at DESC','Link.cnt_likes DESC')
+    )));
     $this->set('top_links',$this->Link->find('all',array(
       'order' => array('Link.cnt_likes DESC'),
       'limit' => 10
     )));
+  }
+
+  public function news() {
+    $this->set('links', $this->Link->find('all',array(
+      'order' => array('Link.updated_at DESC')
+    )));
+    $this->set('top_links',$this->Link->find('all',array(
+      'order' => array('Link.cnt_likes DESC'),
+      'limit' => 10
+    )));
+
   }
 
 

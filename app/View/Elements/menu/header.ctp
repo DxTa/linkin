@@ -44,7 +44,7 @@
         <div class='top-channel-box-inner'>
           <div class='user-menu-top'>
             <ul>
-              <li><a href='#'>Account Settings</a></li>
+              <li><a href='/users/edit/<?php echo $current_user['User']['id'] ?>'>Account Settings</a></li>
               <li>
                 <?php if ($current_user) { ?>
                     <?php if($current_user['User']['facebook_id'] != 0) { ?>
@@ -67,14 +67,14 @@
               <div class='lists-content'>
                 <div class='list-list'>
                   <ul rel='2'>
-                    <?php for($i=0;$i<10;$i++) { ?>
+                    <?php foreach($channels as $channel) { ?>
                     <li>
                       <div class='list-thumb'>
-                        <a href='#'><img src='http://linkhay2.vcmedia.vn/thumbs/channels/channel_18_37_logo.jpg'></a>
+                        <a href='/categories/view/<?php echo $channel['Category']['id']?>'><img src='/app/webroot/img/channel/<?php echo $channel['Category']['id'] ?>.jpg'></a>
                       </div>
                       <div class='list-title'>
-                        <a href='#'>Culture</a>
-                        (10000)
+                        <a href='/categories/view/<?php echo $channel['Category']['id'] ?>'><?php echo $channel['Category']['name'] ?></a>
+                        (<?php echo count($channel['links']) ?>)
                       </div>
                     </li>
                     <?php } ?>
