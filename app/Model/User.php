@@ -22,7 +22,7 @@ class User extends AppModel {
 	// public $primary_key = 'user_id';
 	// public $sequence = 'core_user_id_seq';
 
-  // public $recursive = 1;
+  public $recursive = 3;
 /**
  * Validation rules
  *
@@ -167,6 +167,19 @@ class User extends AppModel {
       // 'conditions' => '',
       // 'fields' => '',
       'order' => 'Comment.created_at DESC',
+      // 'limit' => '',
+      // 'offset' => '',
+      // 'exclusive' => '',
+      // 'finderQuery' => '',
+      // 'counterQuery' => ''
+    ),
+    'Recomment' => array(
+      'className' => 'Recomment',
+      'foreignKey' => 'user_id',
+      'dependent' => true,
+      // 'conditions' => '',
+      // 'fields' => '',
+      'order' => 'Recomment.created_at DESC',
       // 'limit' => '',
       // 'offset' => '',
       // 'exclusive' => '',

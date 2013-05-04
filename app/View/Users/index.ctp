@@ -26,30 +26,26 @@
       <img src="<?php echo $current_user['User']['avatar']?>" />
     </td>
     <td class="actions">
-      <?php if ($current_user["User"]["id"] != $user['User']['id']) {
-        $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
-        if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]));
-        if (!$friend) {
-          echo $this->Form->create('Friendship', array('url'=>array('controller'=>'friendships', 'action'=>'add')));
-          echo $this->Form->hidden('user_id', array('value' => $current_user["User"]["id"]));
-          echo $this->Form->hidden('friend_id', array('value' => $user['User']['id']));
-          echo $this->Form->submit('Add Friend', array('class' => 'btn'));
-        } else {
-          echo $this->Form->create('Friendship', array('url'=>array('controller'=>'friendships', 'action'=>'edit', $friend[0]["Friendship"]["id"])));
-          if ($friend[0]["Friendship"]["state"] == 'approved') {
-            echo $this->Form->hidden('event', array('value' => 'destroy'));
-            echo $this->Form->submit('Unfriend', array('class' => 'btn'));
-          }
-          else {
-            if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
-              echo $this->Form->hidden('event', array('value' => 'approve'));
-              echo $this->Form->submit('Approve', array('class' => 'btn'));
-            } else {
-              echo $this->Form->submit('Pending', array('class' => 'btn disabled', 'disabled' => 'disabled'));
+      <span class="fr-button user-<?php echo $current_user['User']['id'] ?>-friend-<?php echo $user['User']['id'] ?>">
+        <?php if ($current_user["User"]["id"] != $user['User']['id']) {
+          $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
+          if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]));
+          if (!$friend) {
+            echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
+          } else {
+            if ($friend[0]["Friendship"]["state"] == 'approved') {
+              echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="destroy" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Unfriend</button>';
+            }
+            else {
+              if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
+                echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="approve" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Approve</button>';
+              } else {
+                echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="pending" onclick="friendRequest(this)">Pending</button>';
+              }
             }
           }
-        }
-      }?>
+        }?>
+      </span>
 
     </td>
     <td>    <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?></td>
@@ -60,3 +56,30 @@
 <?php endforeach; ?>
 </table>
 </div>
+
+<script type="text/javascript">
+  var friendRequest = function(ele) {
+    s_event = $(ele).attr('event');
+    if (s_event == 'pending') return;
+    action = $(ele).attr('action');
+    data = {
+      Friendship: {
+        'user_id': $(ele).attr('user'),
+        'friend_id' : $(ele).attr('friend')
+      }
+    };
+    if (action.match(/edit/g) != null) {
+      data.Friendship['event'] = s_event;
+    }
+    $.ajax({
+      url:'/friendships/' + action,
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          console.log(response);
+          $('.fr-button.user-' + $(ele).attr('user') + '-friend-' + $(ele).attr('friend')).html(response.data);
+        }
+    });
+  }
+  </script>

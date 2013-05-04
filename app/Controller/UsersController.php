@@ -12,6 +12,7 @@ class UsersController extends AppController {
   // var $name = 'Users';
 
   function beforeFilter() {
+    $this->loadModel('Friendship');
     parent::beforeFilter();
     Security::setHash('sha1');
     $this->Auth->allow('register');
@@ -36,7 +37,7 @@ class UsersController extends AppController {
         $this->Connect->authUser['User']['active'] = true;
         if(isset($fb_user['birthday'])) {
           $time = date_parse_from_format('m/d/Y', $fb_user['birthday']);
-          $this->Connect->authUser['User']['dob'] = array('month' => $time["month"],'day' => $time["day"], 'year' => $time["year"]);
+          // $this->Connect->authUser['User']['dob'] = array('month' => $time["month"],'day' => $time["day"], 'year' => $time["year"]);
         }
         $this->Connect->authUser['User']['avatar'] = FB::api('/me?fields=picture.type(large)')['picture']['data']['url'];
 
@@ -145,7 +146,24 @@ class UsersController extends AppController {
     if (!$user) {
       throw new NotFoundException(__('Invalid user'));
     }
+    $this->loadModel('Link');
+    $lookup_ids = $this->Friendship->getFriendIds($id);
+    array_push($lookup_ids,$id); //push this user to lookup
+    $feeds = $this->Link->find('all',array('conditions' => array('owner_id' => $lookup_ids)));
     $this->set('user', $user);
+    $this->set('feeds', $feeds);
+  }
+
+  function view_friends($id = null) {
+    if (!$id) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $user = $this->User->findById($id);
+    if (!$user) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $this->set('user', $user);
+    $this->set('friends', $user['followingFriends'] + $user['followedFriends']);
   }
 
   function edit($id = null) {
