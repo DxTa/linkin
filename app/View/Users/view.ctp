@@ -84,6 +84,7 @@
         </div>
         <div class="friends-list-wrapper">
           <?php $friends = $user['followingFriends'] + $user['followedFriends'];
+            $friends = array_slice($friends,0,8);
           ?>
           <?php foreach($friends as $friend): ?>
             <a href='/users/view/<?php echo $friend['id'] ?>' class='link-user'>
