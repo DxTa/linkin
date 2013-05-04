@@ -37,8 +37,8 @@ class AppController extends Controller {
     'Session',
     'Auth' => array(
       // 'authorize' => array('Controller'), // <- here
-      'loginRedirect' => array('controller' => 'users', 'action' => 'home'),
-      'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
+      'loginRedirect' => array('controller' => 'links', 'action' => 'index'),
+      'logoutRedirect' => array('controller' => 'links', 'action' => 'index')
     ),
     'Facebook.Connect' => array('model' => 'User', 'noAuth' => true),
     'DebugKit.Toolbar'
