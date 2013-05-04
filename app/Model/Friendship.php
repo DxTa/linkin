@@ -77,6 +77,19 @@ class Friendship extends AppModel {
     $this->delete($this->field('id'));
   }
 
+  public function getFriendIds($u) {
+    $fids = array();
+    $rs = $this->find('all', array('recursive' => -1, 'conditions' => array('friend_id' => $u)));
+    foreach ($rs as $e) {
+      array_push($fids, $e['Friendship']['user_id']);
+    }
+    $rs = $this->find('all', array('recursive' => -1, 'conditions' => array('user_id' => $u)));
+    foreach ($rs as $e) {
+      array_push($fids, $e['Friendship']['friend_id']);
+    }
+    return array_unique($fids);
+  }
+
 
   //The Associations below have been created with all possible keys, those that are not needed can be removed
 

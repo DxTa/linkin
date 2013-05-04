@@ -832,6 +832,10 @@ body {
   color: #363636;
 }
 
+.page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head .username a {
+  color: #363636;
+}
+
 .page-wrap.ViewLink .page-content .linkView-comments .commentlist li.comment-block .c-head .username .user-avatar{
   border: 1px solid #ccc !important;
   padding: 1px;
@@ -1039,7 +1043,35 @@ body {
 }
 
 .profile-header .avatar img.size80{
-  height: 80px;
+  /* max-height: 80px; */
+  width: 80px;
+}
+
+.profile-detail {
+  width: 400px;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.profile-detail .fr-button button {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#e5e5e5');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f0f0f0, endColorstr=#e5e5e5);
+  background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#e5e5e5));
+  background: -moz-linear-gradient(top, #f0f0f0, #e5e5e5);
+  background: linear-gradient(top, #f0f0f0, #e5e5e5);
+  background: #E4E4E3 url("../images/new_version/bg-like-button.png") repeat-x scroll 0 0;
+  border: 1px solid #c3c3c3;
+  color: #333;
+  cursor: pointer;
+  display: block;
+  font: 11px/14px "arial",tahoma,verdana,sans-serif;
+  margin: 0;
+  padding: 0px 8px;
+  overflow: hidden;
+  width: auto;
+  height: 20px;
+  line-height: 20px;
+  font-weight: bold;
 }
 
 .profile-detail h2{
@@ -1051,6 +1083,135 @@ body {
 
 .profile-detail h2 a{
   color: #363636;
+}
+
+
+.profile-detail .blast-update .blast-content{
+  font-size: 12px;
+}
+
+.profile-detail .blast-update .blast-content a{
+  color: #cc0000;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.profile-detail .blast-update .timeago{
+  color: #959595;
+  font-size: 11px;
+}
+
+.profile-header .statistic {
+  color: #C00607;
+  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  text-align: right;
+  top: 10px;
+}
+
+.profile-header .statistic div {
+  margin-bottom: 5px;
+}
+
+
+.profile-header .statistic span {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+}
+
+.feed-container .lh-title {
+  background: url(../img/line2.png) repeat-x scroll 0 100%;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  /* margin: 0 0 15px 0; */
+}
+
+.feed-container .lh-title h2{
+  font-size: 15px !important;
+  font-weight: bold;
+  color: #464646;
+  line-height: 28px !important;
+  margin: 0;
+  padding: 0;
+}
+
+.right-content #friends-list .head-list {
+  border-bottom: solid 1px #ebebeb;
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+}
+
+.right-content #friends-list .head-list h2 {
+  color: #C00607;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  margin: 0 0 5px;
+}
+
+.right-content #friends-list .link-user {
+  font-size: 11px;
+  line-height: 1.4em;
+  color: #464646;
+  display: block;
+  float: left;
+  margin: 0 19px 10px 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.right-content #friends-list .link-user img {
+  width: 60px;
+  height: 60px;
+}
+
+.page-wrap.ViewFriends ul.friends-list li {
+  display: block;
+}
+
+.page-wrap.ViewFriends strong.username {
+  float: left;
+  margin-right: 5px;
+  color: #363636;
+}
+
+.page-wrap.ViewFriends strong.username a img {
+  border: 1px solid #ccc !important;
+  padding: 1px;
+  width: 60px;
+  height: 60px;
+  max-width: 100%;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item {
+  border-bottom: dashed 1px #C2C2C2;
+  padding: 10px 0px;
+  min-height: 65px;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item h3 {
+  font-size: 18px !important;
+  font-weight: normal !important;
+  line-height: 1;
+  margin: 0 !important;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item h3 a{
+  color: #363636;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item span.fr-button{
+  height: 20px;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item span.fr-button button{
+  float: right;
+}
+
+.page-wrap.ViewFriends ul.friends-list li.friends-list-item .date-join {
+  color: #959595;
 }
 
 .media-border {
@@ -1089,3 +1250,4 @@ body {
   margin-left: 20px;
   margin-right: 50px;
 }
+

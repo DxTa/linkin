@@ -1,46 +1,99 @@
 <div class='page-wrap ViewUser'>
   <div class='page-content clearfix'>
     <div class='left-content' style="padding-top: 15px;">
-      <div class="profile-header">
-        <div class="avatar media-border">
-            <img src='<?php echo $user['User']['avatar'] ?>' class="size80" >
+      <?php echo $this->element('User/profile-header', array('user' => $user, 'current_user' => $current_user))?>
+      <div class="feed-container">
+        <div class="lh-title">
+          <h2>News Feed</h2>
         </div>
-        <div class="profile-detail">
-          <div class="profile-action">
-            <h2>
-              <a href='/users/<?php echo $user['User']['id'] ?>'>
-                  <?php echo $user['User']['username'] ?>
-              </a>
-            </h2>
-            <div>
-              <span class="fr-button">
-                <?php if ($current_user["User"]["id"] != $user['User']['id']) {
-                  $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
-                  if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]));
-                  if (!$friend) {
-                    echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
-                  } else {
-                    if ($friend[0]["Friendship"]["state"] == 'approved') {
-                      echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="destroy" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Unfriend</button>';
-                    }
-                    else {
-                      if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
-                        echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="approve" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Approve</button>';
-                      } else {
-                        echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="pending" onclick="friendRequest(this)">Pending</button>';
-                      }
-                    }
-                  }
-                }?>
-              </span>
+        <ul class="news-list">
+          <?php foreach ($feeds as $feed): ?>
+            <li id='link_<?php echo $feed['Link']['id'] ?>'>
+              <div class='link-item clearfix'>
+                <div class='link-thumb right-set'>
+                  <a href="/links/view/<?php echo  $feed['Link']['id']?>" ><img src="<?php echo $feed['Link']['image'] ?>" ></a>
+                </div>
+                <div class='link-like'>
+                  <a href="/links/view/<?php echo  $feed['Link']['id']?>" class='like-count'>
+                      <span id="link_likes_<?php echo $feed['Link']['id'] ?>"><?php echo $feed['Link']['cnt_likes'] ?></span>
+                  </a>
+                  <?php if($current_user) : ?>
+                  <a href='#' class='vote' onclick="likeCreate(<?php echo $feed['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"  >
+                  <?php else : ?>
+                  <a href='#' class='vote' >
+                  <?php endif ?>
+                    <i></i>
+                    Like
+                  </a>
+                </div>
+                <div class='link-content'>
+                  <h2>
+                    <?php if($current_user) : ?>
+                    <a href="<?php echo $feed['Link']['url'] ?>"  target="_blank" id="<?php echo $feed['Link']['id'] ?>" onclick="viewCreate(<?php echo $feed['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)"><?php echo $feed['Link']['description'] ?></a>
+                    <?php else : ?>
+                    <a href="<?php echo $feed['Link']['url'] ?>"  target="_blank" id="<?php echo $feed['Link']['id'] ?>" ><?php echo $feed['Link']['description'] ?></a>
+                    <?php endif ?>
+                  </h2>
+                  <div class='link-meta'>
+                    <span class='user-info'>
+                      <strong>
+                        <a href='/users/view/<?php echo $feed['Owner']['id'] ?>' class='link-owner'>
+                        <img src='<?php echo $feed['Owner']['avatar'] ?>' >
+                          <?php echo $feed['Owner']['username'] ?>
+                        </a>
+                      </strong>
+                      send
+                    </span>
+                    <span class='seperator'>-</span>
+                    <span class='channel'>
+                      <a href="<?php echo Router::url(array('controller' => 'categories', 'action' => 'view', $feed['Category']['id'])) ?>"><?php echo $feed['Category']['name'] ?></a>
+                    </span>
+                    <span class='seperator'>-</span>
+                    <span class='domain'>
+                      <a href="<?php echo $feed['Link']['url'] ?>" target="_blank"><?php echo $this->App->getDomainFromUrl($feed['Link']['url']) ?></a>
+                    </span>
+                  </div>
+                  <div class='link-stats'>
+                    <a class='timeago'>
+                      <?php echo $this->Time->timeAgoInWords($feed['Link']['created_at'], array('format' => 'Y-m-d H:i:s', 'end' => '+1 year'))?>
+                    </a>
+                      ·
+                    <a class='view-count'>
+                      <span id="link_views_<?php echo $feed['Link']['id'] ?>"><?php echo $feed['Link']['cnt_views'] ?></span>
+                      Views
+                    </a>
+                      ·
+                    <a class='comment-count' href="/links/view/<?php echo  $feed['Link']['id']?>">
+                      <?php echo $feed['Link']['cnt_comments'] ?> Comments
+                    </a>
+                      ·
+                    <?php echo $this->Facebook->share(Router::url(array('controller' => 'links', 'action' => 'view', $feed['Link']['id'])),array('style' => 'link','label' => 'Facebook this link')); ?>
+                  </div>
+                </div>
+              </div>
 
-            </div>
-          </div>
-        </div>
+            </li>
+          <?php endforeach ?>
+        </ul>
       </div>
     </div>
     <div class='right-content'>
-
+      <div id="friends-list">
+        <div class="head-list clearfix">
+        <a href="/users/view_friends/<?php echo $user['User']['id'] ?>"><h2>Friends List</h2></a>
+        </div>
+        <div class="friends-list-wrapper">
+          <?php $friends = $user['followingFriends'] + $user['followedFriends'];
+            $friends = array_slice($friends,0,8);
+          ?>
+          <?php foreach($friends as $friend): ?>
+            <a href='/users/view/<?php echo $friend['id'] ?>' class='link-user'>
+              <img src='<?php echo $friend['avatar'] ?>' ><br/>
+              <?php echo $friend['username'] ?>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -66,7 +119,44 @@
         dataType : "json",
         success: function(response, status) {
           console.log(response);
-          $('.profile-detail .profile-action .fr-button').html(response.data);
+          $('.fr-button.user-' + $(ele).attr('user') + '-friend-' + $(ele).attr('friend')).html(response.data);
+        }
+    });
+  }
+  var viewCreate = function(link_id,user_id) {
+    data = {
+      UserLinkView: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkViews/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          console.log(link_id);
+          $("#link_views_"+ link_id).html(parseInt($("#link_views_" + link_id).html()) +1);
+        }
+    });
+  };
+
+  var likeCreate = function(link_id,user_id) {
+    data = {
+      UserLinkLike: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkLikes/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          console.log(link_id);
+          $("#link_likes_"+ link_id).html(parseInt($("#link_likes_" + link_id).html()) +1);
         }
     });
   }

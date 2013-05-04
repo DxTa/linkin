@@ -5,7 +5,7 @@
 <ul class="menu-bar">
   <li> <a href='/links/news'> New Links</a></li>
   <li class='line'>|</li>
-  <li> <a href='#'> Friends </a></li>
+  <li> <a href='/users/view_friends/<?php echo $current_user['User']['id']?>'> Friends </a></li>
 
   <li class='menu-btn'>
     <div>
