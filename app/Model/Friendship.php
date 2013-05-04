@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class Friendship extends AppModel {
 
+  public $recursive = 3;
+
   public $actsAs = array('StateMachine');
 
   public $states = array(

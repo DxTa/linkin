@@ -22,7 +22,7 @@ class User extends AppModel {
 	// public $primary_key = 'user_id';
 	// public $sequence = 'core_user_id_seq';
 
-  public $recursive = 3;
+  // public $recursive = 1;
 /**
  * Validation rules
  *

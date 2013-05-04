@@ -50,7 +50,7 @@
     </a>
    <b> or  Register With </b>
     <div class='register-fb'>
-      <?php echo $this->Facebook->login(array('perms' => 'email,publish_stream', 'redirect' => true, 'label' => 'Connect with facebook')); ?>
+      <?php echo $this->Facebook->login(array('perms' => 'email,publish_stream', 'redirect' => array('controller' => 'users', 'action' => 'syncFacebook'), 'label' => 'Connect with facebook')); ?>
     </div>
 
   </div>

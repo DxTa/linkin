@@ -6,15 +6,18 @@ App::uses('AppController', 'Controller');
  */
 class FriendshipsController extends AppController {
 
-  function add() {
+	public $scaffold;
+
+  function beforeFilter() {
+    $this->loadModel('Friendship');
+    parent::beforeFilter();
+  }
+
+  public function add() {
     if ($this->request->is('post')) {
       $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
       $this->autoLayout = false;
       $this->autoRender = false;
-      // $this->Friendship->Behaviors->load('StateMachine');
-      // $behaviors = $this->Friendship->Behaviors->loaded();
-      // debug($behaviors);
-      // die;
       $this->Friendship->create();
       if ($this->Friendship->save($this->request->data)) {
         $response = array('success' => true);
@@ -27,7 +30,7 @@ class FriendshipsController extends AppController {
     }
   }
 
-  function edit($id = null) {
+  public function edit($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid friendship'));
     }

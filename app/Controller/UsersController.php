@@ -6,6 +6,8 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+  public $scaffold;
+
   var $defaultSex = array('Undefined' => 'Undefined', 'Male' => 'Male', 'Female' => 'Female', 'Gay' => 'Gay' ,'Lesbian' => 'Lesbian');
   // var $name = 'Users';
 
@@ -57,12 +59,10 @@ class UsersController extends AppController {
    */
   function login() {
     if ($this->Auth->User())
-      $this->redirect($this->referer());
+      $this->redirect($this->Auth->redirect());
 
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
-        debug($this->Auth->User());
-        die;
         $this->redirect($this->Auth->redirect());
       } else {
         $this->Session->setFlash(__('Invalid username or password, try again'));
@@ -137,7 +137,6 @@ class UsersController extends AppController {
     if (!$id) {
       throw new NotFoundException(__('Invalid user'));
     }
-    $this->User->recursive = 3;
     $user = $this->User->findById($id);
     if (!$user) {
       throw new NotFoundException(__('Invalid user'));
