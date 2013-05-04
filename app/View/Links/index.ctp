@@ -119,6 +119,7 @@
         im_lo.src = 'http://localhost:3000/app/webroot/img/simple_logo.png';
         div_logo.appendChild(im_lo);
         popup.className += 'linkin-popup';
+        popup.onclick = 'this.parentNode.removeChild(this);';
         var f = document.createElement('form');
         var div = document.createElement('div');
         var label;

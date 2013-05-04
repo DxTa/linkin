@@ -29,6 +29,7 @@ class LinksController extends AppController {
       $this->request->data['Link']['owner_id'] = $this->Auth->user('id');
       if($this->Link->save($this->request->data)) {
         if($this->request->is('ajax')) {
+          die;
           $this->layout = 'ajax'; // Or $this->RequestHandler->ajaxLayout, Only use for HTML
           $this->autoLayout = false;
           $this->autoRender = false;

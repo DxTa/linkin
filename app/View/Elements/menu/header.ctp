@@ -5,7 +5,11 @@
 <ul class="menu-bar">
   <li> <a href='/links/news'> New Links</a></li>
   <li class='line'>|</li>
-  <li> <a href='/users/view_friends/<?php echo $current_user['User']['id']?>'> Friends </a></li>
+  <?php if (isset($current_user['User']['id'])): ?>
+    <li> <a href='/users/view_friends/<?php echo $current_user['User']['id']?>'> Friends </a></li>
+  <?php else:?>
+    <li> <a href='#'> Friends </a></li>
+  <?php endif ?>
 
   <li class='menu-btn'>
     <div>

@@ -22,5 +22,9 @@ class SearchesController extends AppController {
         'conditions' => array('Link.description LIKE ' =>"%".$keyword."%"),
         'order' => array('Link.cnt_likes DESC'),
       )));
+    $this->set('top_links',$this->Link->find('all',array(
+      'order' => array('Link.cnt_likes DESC'),
+      'limit' => 10
+    )));
   }
 }

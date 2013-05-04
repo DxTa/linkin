@@ -149,7 +149,7 @@ class UsersController extends AppController {
     $this->loadModel('Link');
     $lookup_ids = $this->Friendship->getFriendIds($id);
     array_push($lookup_ids,$id); //push this user to lookup
-    $feeds = $this->Link->find('all',array('conditions' => array('owner_id' => $lookup_ids)));
+    $feeds = $this->Link->find('all',array('order' => array('Link.created_at DESC'), 'conditions' => array('owner_id' => $lookup_ids)));
     $this->set('user', $user);
     $this->set('feeds', $feeds);
   }
