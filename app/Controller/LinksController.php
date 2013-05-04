@@ -21,6 +21,7 @@ class LinksController extends AppController {
     parent::beforeFilter();
     Security::setHash('sha1');
     $this->Auth->allow('index');
+    $this->Auth->allow('news');
   }
 
   public function make() {
