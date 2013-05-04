@@ -32,8 +32,10 @@ class UsersController extends AppController {
         $this->Connect->authUser['User']['username'] = $fb_user['username'];
         $this->Connect->authUser['User']['sex'] = $fb_user['gender'];
         $this->Connect->authUser['User']['active'] = true;
-        $time = date_parse_from_format('m/d/Y', $fb_user['birthday']);
-        $this->Connect->authUser['User']['dob'] = array('month' => $time["month"],'day' => $time["day"], 'year' => $time["year"]);
+        if(isset($fb_user['birthday'])) {
+          $time = date_parse_from_format('m/d/Y', $fb_user['birthday']);
+          $this->Connect->authUser['User']['dob'] = array('month' => $time["month"],'day' => $time["day"], 'year' => $time["year"]);
+        }
         $this->Connect->authUser['User']['avatar'] = FB::api('/me?fields=picture.type(large)')['picture']['data']['url'];
 
         return true; //Must return true or will not save.
@@ -48,7 +50,7 @@ class UsersController extends AppController {
 
   function afterFacebookLogin(){
     //Logic to happen after successful facebook login.
-    $this->redirect('/users/index');
+    $this->redirect('/links/index');
   }
 
   /**
@@ -61,8 +63,6 @@ class UsersController extends AppController {
 
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
-        debug($this->Auth->User());
-        die;
         $this->redirect($this->Auth->redirect());
       } else {
         $this->Session->setFlash(__('Invalid username or password, try again'));
@@ -111,6 +111,8 @@ class UsersController extends AppController {
   function syncFacebook() {
     $this->Connect->noAuth = false;
     $this->Connect->startup($this->Controller);
+    $this->redirect('/links/index');
+
   }
 
   function verify() {
