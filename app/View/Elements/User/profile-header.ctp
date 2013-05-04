@@ -36,7 +36,7 @@
       <?php if (isset($user['Link'][0])):?>
       <span class="blast-content">
         <?php echo $user['Link'][0]['description']?><br/>
-        <a href="<?php echo $user['Link'][0]['url']?>"><?php echo $user['Link'][0]['url'] ?></a> -
+        <a href="<?php echo $user['Link'][0]['url']?>" target="_blank"><?php echo $user['Link'][0]['url'] ?></a> -
       </span>
       <span class="timeago">
           <?php echo $this->Time->timeAgoInWords($user['Link'][0]['created_at'], array('format' => 'Y-m-d H:i:s', 'end' => '+1 year'))?>
