@@ -123,4 +123,41 @@
         }
     });
   }
+  var viewCreate = function(link_id,user_id) {
+    data = {
+      UserLinkView: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkViews/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          console.log(link_id);
+          $("#link_views_"+ link_id).html(parseInt($("#link_views_" + link_id).html()) +1);
+        }
+    });
+  };
+
+  var likeCreate = function(link_id,user_id) {
+    data = {
+      UserLinkLike: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkLikes/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          console.log(link_id);
+          $("#link_likes_"+ link_id).html(parseInt($("#link_likes_" + link_id).html()) +1);
+        }
+    });
+  }
   </script>
