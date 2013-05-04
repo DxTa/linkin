@@ -80,6 +80,28 @@ class AppSchema extends CakeSchema {
           }
         }
         break;
+      case 'comments':
+        App::uses('ClassRegistry', 'Utility');
+        $comment = ClassRegistry::init('Comment');
+        $link = ClassRegistry::init('Link');
+        for ($i=1; $i<=5; $i++) {
+          for ($j=1;$j<=10;$j++) {
+            $link_id = rand(1,5)+(rand(0,4)*10);
+            $comment->create();
+            $comment->save(
+              array('Comment' => array(
+                'user_id' => $i,
+                'link_id' => $link_id,
+                'content' => $faker->Lorem->sentence(rand(4,20))
+                )
+              )
+            );
+            $link->id = $link_id;
+            $l = $link->findById($link_id);
+            $link->saveField('cnt_comments',$l['Link']['cnt_comments'] + 1);
+          }
+        }
+        break;
       }
     }
   }
@@ -155,37 +177,6 @@ class AppSchema extends CakeSchema {
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
   );
 
-  public $images = array(
-    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-    'height' => array('type' => 'integer', 'null' => true),
-    'width' => array('type' => 'integer', 'null' => true),
-    'url' => array('type' => 'text', 'null' => true),
-    'path' => array('type' => 'text', 'null' => true),
-    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-  );
-
-  public $comments = array(
-    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-    'user_id' => array('type' => 'integer', 'null' => false),
-    'link_id' => array('type' => 'integer', 'null' => false),
-    'content' => array('type' => 'text', 'null' => true),
-    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-  );
-
-  public $recomments = array(
-    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-    'user_id' => array('type' => 'integer', 'null' => false),
-    'comment_id' => array('type' => 'integer', 'null' => false),
-    'content' => array('type' => 'text', 'null' => true),
-    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-  );
-
   public $user_link_likes = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false),
@@ -207,5 +198,38 @@ class AppSchema extends CakeSchema {
     'USER_LINK_VIEW_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
   )
 );
+
+  public $images = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'height' => array('type' => 'integer', 'null' => true),
+    'width' => array('type' => 'integer', 'null' => true),
+    'url' => array('type' => 'text', 'null' => true),
+    'path' => array('type' => 'text', 'null' => true),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
+  public $recomments = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'user_id' => array('type' => 'integer', 'null' => false),
+    'comment_id' => array('type' => 'integer', 'null' => false),
+    'content' => array('type' => 'text', 'null' => true),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
+  public $comments = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'user_id' => array('type' => 'integer', 'null' => false),
+    'link_id' => array('type' => 'integer', 'null' => false),
+    'content' => array('type' => 'text', 'null' => true),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+  );
+
+
 
 }

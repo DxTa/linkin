@@ -13,7 +13,7 @@
 
   <li class='menu-btn'>
     <div>
-      <?php if($current_user)  {?>
+      <?php if(isset($current_user) == true && $current_user)  {?>
         <a href='#' class='menu-linkin' onclick='newLink()'>LinkIn</a>
       <?php }else  {?>
         <a href='#' class='menu-linkin'>LinkIn</a>

@@ -779,6 +779,7 @@ body {
 
 .page-wrap.ViewLink .page-content .thumb img {
   border: none;
+  width: 100%;
 }
 
 .page-wrap.ViewLink .page-content .linkView-comments h2.lineCenterTitle {
