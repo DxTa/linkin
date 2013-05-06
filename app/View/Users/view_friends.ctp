@@ -22,8 +22,12 @@
               </h3>
               <span class="fr-button user-<?php echo $current_user['User']['id'] ?>-friend-<?php echo $friend['id'] ?>">
                 <?php if ($current_user["User"]["id"] != $friend['id']) {
-                  $fr = $this->App->search($friend['followingFriends'],array('id' => $current_user["User"]["id"]));
-                  if (!$fr) $friend = $this->App->search($friend['followedFriends'],array('id' => $current_user["User"]["id"]));
+                  if (isset($friend['followingFriends'])) {
+                    $fr = $this->App->search($friend['followingFriends'],array('id' => $current_user["User"]["id"]));
+                  }
+                  if (isset($friend['followedFriends'])) {
+                    if (!isset($fr) || !$fr) $fr = $this->App->search($friend['followedFriends'],array('id' => $current_user["User"]["id"]));
+                  }
                   if (!$fr) {
                     echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$friend['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
                   } else {
@@ -54,29 +58,29 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  var friendRequest = function(ele) {
-    s_event = $(ele).attr('event');
-    if (s_event == 'pending') return;
-    action = $(ele).attr('action');
-    data = {
-      Friendship: {
-        'user_id': $(ele).attr('user'),
-        'friend_id' : $(ele).attr('friend')
-      }
-    };
-    if (action.match(/edit/g) != null) {
-      data.Friendship['event'] = s_event;
-    }
-    $.ajax({
-      url:'/friendships/' + action,
-        type:'post',
-        data: {data: data},
-        dataType : "json",
-        success: function(response, status) {
-          console.log(response);
-          $('.fr-button.user-' + $(ele).attr('user') + '-friend-' + $(ele).attr('friend')).html(response.data);
-        }
-    });
-  }
+                  <script type="text/javascript">
+                  var friendRequest = function(ele) {
+                    s_event = $(ele).attr('event');
+                    if (s_event == 'pending') return;
+                    action = $(ele).attr('action');
+                    data = {
+                      Friendship: {
+                        'user_id': $(ele).attr('user'),
+                          'friend_id' : $(ele).attr('friend')
+                      }
+                    };
+                    if (action.match(/edit/g) != null) {
+                      data.Friendship['event'] = s_event;
+                    }
+                    $.ajax({
+                      url:'/friendships/' + action,
+                        type:'post',
+                        data: {data: data},
+                        dataType : "json",
+                        success: function(response, status) {
+                          console.log(response);
+                          $('.fr-button.user-' + $(ele).attr('user') + '-friend-' + $(ele).attr('friend')).html(response.data);
+                        }
+                    });
+                  }
   </script>
