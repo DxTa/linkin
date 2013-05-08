@@ -31,7 +31,7 @@
         <div class='link-meta'>
           <span class='user-info'>
             <strong>
-              <a href='/users/<?php echo $link['Owner']['id'] ?>' class='link-owner'>
+              <a href='/users/view/<?php echo $link['Owner']['id'] ?>' class='link-owner'>
               <img src='<?php echo $link['Owner']['avatar'] ?>' >
                 <?php echo $link['Owner']['username'] ?>
               </a>

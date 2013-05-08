@@ -432,6 +432,10 @@ body {
   width: 30px;
   text-align: center;
 }
+.side-link img {
+  height: 30px;
+  width: 30px;
+}
 
 .link-thumb a {
 
@@ -1252,3 +1256,16 @@ body {
   margin-right: 50px;
 }
 
+
+.author-mess {
+  font-size: 12px;
+  font-weight: normal;
+  color: #164673;
+}
+
+.author-mess .dot {
+  font-size: 8px;
+  vertical-align: 2px;
+  color: #c00607;
+  margin: 0 2px 0 0;
+}

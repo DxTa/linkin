@@ -63,7 +63,7 @@ class AppSchema extends CakeSchema {
         App::uses('ClassRegistry', 'Utility');
         $link = ClassRegistry::init('Link');
         for ($i=1; $i<=5; $i++) {
-          for ($j=1;$j<=10;$j++) {
+          for ($j=1;$j<=3;$j++) {
             $link->create();
             $link->save(
               array('Link' => array(
@@ -72,7 +72,7 @@ class AppSchema extends CakeSchema {
                 'description' => implode(' ',$faker->Lorem->sentences(2)),
                 'message' => implode(' ',$faker->Lorem->sentences(1)),
                 'url' => $urls[rand(0,9)],
-                'image' => 'http://lorempixel.com/'.(rand(3,6)*100).'/'.(rand(3,6)*100).'/fashion'
+                'image' => 'http://lorempixel.com/'.(rand(3,6)*50).'/'.(rand(3,6)*50).'/fashion'
                 // 'image' => 'app/webroot/img/channel/10.jpg' //for offline
                 )
               )
@@ -85,8 +85,8 @@ class AppSchema extends CakeSchema {
         $comment = ClassRegistry::init('Comment');
         $link = ClassRegistry::init('Link');
         for ($i=1; $i<=5; $i++) {
-          for ($j=1;$j<=10;$j++) {
-            $link_id = rand(1,5)+(rand(0,4)*10);
+          for ($j=1;$j<=3;$j++) {
+            $link_id = rand(1,15);
             $comment->create();
             $comment->save(
               array('Comment' => array(
@@ -198,6 +198,19 @@ class AppSchema extends CakeSchema {
     'USER_LINK_VIEW_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
   )
 );
+
+  public $user_link_sends = array(
+    'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
+    'send_id' => array('type' => 'integer', 'null' => false),
+    'link_id' => array('type' => 'integer', 'null' => false),
+    'target_id' => array('type' => 'integer', 'null' => false),
+    'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+    'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1),
+    'USER_LINK_VIEW_KEY' => array('column' => array('user_id','link_id'), 'unique' => 1)
+  )
+);
+
 
   public $images = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),

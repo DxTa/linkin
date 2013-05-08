@@ -1,87 +1,53 @@
-<a href="javascript:{
-  var f = document.createElement('form');
-  var div = document.createElement('div');
-  div.className += 'link-images-holder';
-  var div_h = document.createElement('div');
-  div_h.className += 'linkin-form';
-  f.method = 'post';
-  f.action = 'http://localhost:3000/links/make';
-  f.enctype = 'multipart/form-data';
-  f.character_set = 'utf-8';
-  var u = document.createElement('input');
-  u.type = 'hidden';
-  u.name = 'data[Link][url]';
-  u.value = document.URL;
-  var im = document.createElement('input');
-  im.type = 'hidden';
-  im.name = 'data[Link][image]';
-  im.value = 'ee';
-  f.appendChild(u);
-  f.innerHTML +=  '<input type=\'text\' name=\'data[Link][description]\'/><br />';
-  var bt = document.createElement('input');
-  bt.type = 'submit';
-  im.value = 'click';
-  f.appendChild(bt);
-  nl = document.getElementsByTagName('img');
-  var arr = [];
-  for(var i = nl.length; i--; arr.unshift(nl[i]));
-  arr.forEach(function(e) {
-    window.im = im;
-    img = document.createElement('img');
-    img.src = e.src;
-    img.className +='linkin-img';
-    img.onclick = function() {
-      nl_c = document.getElementsByClassName('linkin-img-chosen');
-      arr = [];
-      for(var i = nl_c.length; i--; arr.unshift(nl_c[i]));
-      arr.forEach(function(e) {
-        e.className = 'linkin-img';
-      });
-
-      this.className += ' linkin-img-chosen';
-      f.appendChild(im);
-      im.value = this.src;
-
-    };
-    div.appendChild(img);
-  });
-  var css = document.createElement('style');
-  css.type = 'text/css';
-  css.innerHTML = '
-    .linkin-form {
-      position: absolute;
-      top: 0px;
-      height: 300px;
-      width: 100%;
-      background: #DADADA;
-      z-index: 999;
-    }
-    .linkin-img {
-      width: 50px;
-      height: 50px;
-      margin: 5px;
-      border: 2px solid white;
-    }
-    .linkin-img-chosen {
-      border: 2px solid red;
-    }
-  ';
-  div_h.appendChild(f);
-  div_h.appendChild(div);
-  document.body.appendChild(css);
-  document.body.appendChild(div_h);
-}">ALO</a>
-
-<?php
-echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
-echo $this->Form->inpput('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
-echo $this->Form->input('url',array('type'=>'text'));
-echo $this->Form->input('description',array('type'=>'text'));
-echo $this->Form->input('image', array('label' => 'Remote URL'));
-echo $this->Form->submit('Make',array('class' => 'btn'));
-?>
-<a href="/links/index">Go Index</a>
-<div id="responseSuccess"></div>
+<div class='newLink-form-holder'>
+  <div class="popup-header-title">
+    <span>New Link</span>
+  </div>
+  <div class="popup-content-wrapper">
+    <div class="thumb-preview" id="newLink-thumb-preview">
+      <div>
+        <img src="http://linkhay.com/templates/images/new_version/link/post/no-thumb.png" class="mrk-thumb-preview">
+      </div>
+    </div>
+    <div class='newLink-form'>
+      <?php
+      $c = ClassRegistry::init('Category');
+      $c_result = $c->query("select id, name from categories");
+      $c_array = array_combine(Set::extract('/categories/id', $c_result), Set::extract('/categories/name', $c_result));
+      $data = $this->Js->get('#LinkMakeForm')->serializeForm(array('isForm' => true, 'inline' => true));
+      $this->Js->get('#LinkMakeForm')->event(
+          'submit',
+          $this->Js->request(
+            array('controller' => 'links', 'action' => 'make'),
+            array(
+                    'data' => $data,
+                    'async' => true,
+                    'dataExpression'=>true,
+                    'method' => 'POST',
+                    'success' => "$('.viewButton').attr('href',JSON.parse(data).data.redirectURL).show();$('.newLink-form form .submit').hide()",
+                )
+            )
+        );
+      echo  $this->Form->create('Link',array('action'=>'make','type'=>'file'));
+      echo $this->Form->input('owner_id',array('value'=> $current_user['User']['id'],'type'=>'hidden'));
+      echo $this->Form->input('url',array('type'=>'text', 'div' => array('class' => 'urlInputDiv')));
+      echo "<div class=\"category-selector\">";
+      echo $this->Form->label('Category');
+      echo $this->Form->select('category_id',$c_array);
+      echo "</div>";
+      echo $this->Form->label('description');
+      echo $this->Form->textarea('description',array('rows' => 5));
+      echo $this->Form->label('message');
+      echo $this->Form->textarea('message',array('rows' => 2));
+      echo $this->Form->input('image', array('label' => 'Remote URL', 'type' => 'hidden'));
+      echo $this->Form->submit('Linkin');
+      echo $this->Form->end();
+      echo $this->Js->writeBuffer();
+      echo "<a class=\"viewButton\" style=\"display: none;\" href=\"#\">View It</a>";
+      ?>
+    </div>
+    <div id="responseSuccess"></div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
@@ -90,6 +56,7 @@ var changeURL = function(e) {
   $("#responseSuccess img").removeClass("chosen");
   $(e).addClass('chosen');
   $("#LinkImage").val(src);
+  $("#newLink-thumb-preview > div > img").attr('src',src);
 }
 
 var checkLink = function(data) {
@@ -109,7 +76,7 @@ var checkLink = function(data) {
   });
 }
 
-$('#LinkUrl').bind('paste', function () {
+$('#LinkUrl').bind('change', function () {
   var element = this;
   setTimeout(function () {
     var text = $(element).val();
@@ -117,7 +84,6 @@ $('#LinkUrl').bind('paste', function () {
       checkLink(text);
   }, 100);
 });
-
 
 </script>
 
