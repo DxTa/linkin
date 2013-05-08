@@ -101,6 +101,23 @@ class AppSchema extends CakeSchema {
             $link->saveField('cnt_comments',$l['Link']['cnt_comments'] + 1);
           }
         }
+        $like = ClassRegistry::init('UserLinkLike');
+        for ($i=1; $i<=10; $i++) {
+          for ($j=1;$j<=rand(0,10);$j++) {
+            $link_id = rand(1,13);
+            $like->create();
+            $like->save(
+              array('UserLinkLike' => array(
+                'user_id' => $i,
+                'link_id' => $link_id,
+                )
+              )
+            );
+            $link->id = $link_id;
+            $l = $link->findById($link_id);
+            $link->saveField('cnt_likes',$l['Link']['cnt_likes'] + 1);
+          }
+        }
         break;
       }
     }

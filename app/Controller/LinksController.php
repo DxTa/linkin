@@ -82,7 +82,7 @@ class LinksController extends AppController {
 
   public function index() {
     $this->set('links', $this->Link->find('all',array(
-      'conditions' => array('Link.cnt_likes >=' => 5),
+      'conditions' => array('Link.cnt_likes >=' => 2),
       'order' => array('Link.updated_at DESC','Link.cnt_likes DESC')
     )));
     $this->set('top_links',$this->Link->find('all',array(

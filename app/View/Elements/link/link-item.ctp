@@ -57,12 +57,20 @@
           <?php echo $link['Link']['cnt_comments'] ?> Comments
         </a>
           ·
-        <?php if(!empty($link['UserLinkSend'])) : ?>
-        <a class='comment-count' href="javascript:{alert('Tin nay ban da loan')}" >Loan tin </a>
-          ·
-        <span class='share-list'><a> Tin da loan</a></span>
-        <?php else :  ?>
-        <a class='comment-count' href='javascript:{void()}' onclick="sendCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)">Loan tin </a>
+        <?php if($current_user) : ?>
+          <?php $check=true; foreach($link['UserLinkSend'] as $ls) : ?>
+            <?php if($ls['user_id'] == $current_user['User']['id']) : ?>
+              <?php $check = false;break; ?>
+            <?php endif ?>
+          <?php endforeach ?>
+          <?php if(!empty($link['UserLinkSend']) && ($check == true))  : ?>
+          <a class='comment-count' href="javascript:{alert('Tin nay ban da loan')}" >Loan tin </a>
+            ·
+          <span class='share-list'><a> Tin da loan</a></span>
+          <?php else :  ?>
+
+          <a class='comment-count' href='javascript:{void()}' onclick="sendCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)">Loan tin </a>
+          <?php endif ?>
         <?php endif ?>
       </div>
     </div>

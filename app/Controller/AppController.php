@@ -41,7 +41,7 @@ class AppController extends Controller {
       'logoutRedirect' => array('controller' => 'links', 'action' => 'index')
     ),
     'Facebook.Connect' => array('model' => 'User', 'noAuth' => true),
-    'DebugKit.Toolbar'
+    // 'DebugKit.Toolbar'
   );
 
   public function beforeFilter() {
