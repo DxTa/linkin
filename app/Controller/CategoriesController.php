@@ -29,7 +29,8 @@ class CategoriesController extends AppController {
     $this->set('category', $category);
     $this->set('top_links',$this->Link->find('all',array(
         'order' => array('Link.cnt_likes DESC'),
-        'limit' => 10
+        'limit' => 10,
+        'recursive' => -1
       )));
   }
 
