@@ -52,7 +52,7 @@
                   <div class='link-meta'>
                     <span class='user-info'>
                       <strong>
-                        <a href='/users/<?php echo $link['Owner']['id'] ?>' class='link-owner'>
+                        <a href='/users/view/<?php echo $link['Owner']['id'] ?>' class='link-owner'>
                         <img src='<?php echo $link['Owner']['avatar'] ?>' >
                           <?php echo $link['Owner']['username'] ?>
                         </a>
@@ -367,4 +367,23 @@ margin-top: 20px;
     });
   }
 
+  var sendCreate = function(link_id,user_id) {
+    data = {
+      UserLinkSend: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkSends/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          $("#link_" + link_id + " .link-stats").append(" · <span class='share-list'><a>Tin da loan</a></span>");
+          alert("Ban da loan tin");
+        }
+    });
+
+  }
   </script>

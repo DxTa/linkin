@@ -23,7 +23,7 @@
     <td><?php echo h($user['User']['sex']); ?>&nbsp;</td>
     <td><?php echo h($user['User']['dob']); ?>&nbsp;</td>
     <td>
-      <img src="<?php echo $current_user['User']['avatar']?>" />
+      <img src="<?php echo $user['User']['avatar']?>" />
     </td>
     <td class="actions">
       <span class="fr-button user-<?php echo $current_user['User']['id'] ?>-friend-<?php echo $user['User']['id'] ?>">

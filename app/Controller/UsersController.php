@@ -198,7 +198,7 @@ class UsersController extends AppController {
       $this->User->id = $id;
       if ($this->User->save($this->request->data)) {
         $this->Session->setFlash('User has been updated.');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('action' => 'view',$id));
       } else {
         $this->Session->setFlash('Unable to update your profile.');
       }
