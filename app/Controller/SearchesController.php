@@ -21,10 +21,12 @@ class SearchesController extends AppController {
     $this->set('links',$this->Link->find('all',array(
         'conditions' => array('Link.description LIKE ' =>"%".$keyword."%"),
         'order' => array('Link.cnt_likes DESC'),
+        'recursive' => 1
       )));
     $this->set('top_links',$this->Link->find('all',array(
       'order' => array('Link.cnt_likes DESC'),
-      'limit' => 10
+      'limit' => 10,
+      'recursive' => -1
     )));
   }
 }

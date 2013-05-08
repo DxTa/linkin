@@ -39,7 +39,7 @@ class AppSchema extends CakeSchema {
               'email' => 'user'.$i.'@gmail.com',
               'sex' => 'male',
               'password' => '67a56683fbe216ea963cebe001d0e7dcae5b4a51',
-              'avatar' => 'http://lorempixel.com/100/100/people',
+              'avatar' => 'http://lorempixel.com/60/60/people',
               // 'avatar' => 'app/webroot/img/default_avatar.png', //for offline
               'active' => 1
               )
@@ -72,7 +72,7 @@ class AppSchema extends CakeSchema {
                 'description' => implode(' ',$faker->Lorem->sentences(2)),
                 // 'message' => implode(' ',$faker->Lorem->sentences(1)),
                 'url' => $urls[rand(0,9)],
-                'image' => 'http://lorempixel.com/'.(rand(3,6)*50).'/'.(rand(3,6)*50).'/fashion'
+                'image' => 'http://lorempixel.com/60/60/fashion'
                 // 'image' => 'app/webroot/img/channel/10.jpg' //for offline
                 )
               )
@@ -103,7 +103,7 @@ class AppSchema extends CakeSchema {
         }
         $like = ClassRegistry::init('UserLinkLike');
         for ($i=1; $i<=10; $i++) {
-          for ($j=1;$j<=rand(1,15);$j++) {
+          for ($j=1;$j<=rand(1,10);$j++) {
             $link_id = $j;
             $like->create();
             $like->save(

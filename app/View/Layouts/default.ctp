@@ -42,7 +42,6 @@
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
     echo $this->fetch('script');
-    echo $this->Facebook->init();
 	?>
 </head>
 <body>
@@ -62,6 +61,8 @@
 	</div>
   <?php echo $this->element('popup/popup') ?>
 </body>
+<?php echo $this->Facebook->init(); ?>
+
 </html>
 
 <script type="text/javascript">

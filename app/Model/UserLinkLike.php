@@ -16,6 +16,9 @@ class UserLinkLike extends AppModel {
  *
  * @var array
  */
+
+  public $recursive = -1;
+
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
