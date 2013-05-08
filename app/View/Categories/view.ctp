@@ -61,11 +61,11 @@
                     </span>
                     <span class='seperator'>-</span>
                     <span class='channel'>
-                      <a href='#'>Education</a>
+                      <a href="<?php echo Router::url(array('controller' => 'categories', 'action' => 'view', $link['Category']['id'])) ?>"><?php echo $link['Category']['name'] ?></a>
                     </span>
                     <span class='seperator'>-</span>
                     <span class='domain'>
-                      <a href='#'>kenh14.vn</a>
+                      <a href="<?php echo $link['url'] ?>" target="_blank"><?php echo $this->App->getDomainFromUrl($link['url']) ?></a>
                     </span>
                   </div>
                   <div class='link-stats'>
