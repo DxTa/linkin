@@ -59,7 +59,7 @@
             ·
           <?php echo $this->Facebook->share(null,array('style' => 'link','label' => 'Facebook this link')); ?>
         </div>
-        <?php echo $this->Facebook->like(); ?>
+        <?php echo $this->Facebook->like(array('href' => "http://localhost:3000".Router::url(array('controller' => 'links', 'action' => 'view', $link['Link']['id'])))); ?>
       </div>
 
 
