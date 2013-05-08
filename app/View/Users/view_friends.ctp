@@ -23,12 +23,12 @@
               <span class="fr-button user-<?php echo $current_user['User']['id'] ?>-friend-<?php echo $friend['id'] ?>">
                 <?php if ($current_user["User"]["id"] != $friend['id']) {
                   if (isset($friend['followingFriends'])) {
-                    $fr = $this->App->search($friend['followingFriends'],array('id' => $current_user["User"]["id"]));
+                    $fr = $this->App->search($friend['followingFriends'],array('id' => $current_user["User"]["id"]),1);
                   }
                   if (isset($friend['followedFriends'])) {
-                    if (!isset($fr) || !$fr) $fr = $this->App->search($friend['followedFriends'],array('id' => $current_user["User"]["id"]));
+                    if (!isset($fr) || !$fr) $fr = $this->App->search($friend['followedFriends'],array('id' => $current_user["User"]["id"]),1);
                   }
-                  if (!$fr) {
+                  if (!$fr || !isset($fr[0]["Friendship"])) {
                     echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$friend['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
                   } else {
                     if ($fr[0]["Friendship"]["state"] == 'approved') {

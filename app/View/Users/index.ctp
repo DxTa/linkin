@@ -28,23 +28,27 @@
     <td class="actions">
       <span class="fr-button user-<?php echo $current_user['User']['id'] ?>-friend-<?php echo $user['User']['id'] ?>">
         <?php if ($current_user["User"]["id"] != $user['User']['id']) {
-          $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]));
-          if (!$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]));
-          if (!$friend) {
-            echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
-          } else {
-            if ($friend[0]["Friendship"]["state"] == 'approved') {
-              echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="destroy" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Unfriend</button>';
+            if (isset($user['followingFriends'])) {
+              $friend = $this->App->search($user['followingFriends'],array('id' => $current_user["User"]["id"]),1);
             }
-            else {
-              if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
-                echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="approve" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Approve</button>';
-              } else {
-                echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="pending" onclick="friendRequest(this)">Pending</button>';
+            if (isset($user['followedFriends'])) {
+              if (!isset($friend) || !$friend) $friend = $this->App->search($user['followedFriends'],array('id' => $current_user["User"]["id"]),1);
+            }
+            if (!$friend || !isset($friend[0]["Friendship"])) {
+              echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" action="add" onclick="friendRequest(this)">Add Friend</button>';
+            } else {
+              if ($friend[0]["Friendship"]["state"] == 'approved') {
+                echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="destroy" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Unfriend</button>';
+              }
+              else {
+                if ($friend[0]["Friendship"]["friend_id"] == $current_user["User"]["id"]) {
+                  echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="approve" action="edit/'.$friend[0]["Friendship"]["id"].'" onclick="friendRequest(this)">Approve</button>';
+                } else {
+                  echo '<button class="friendship-act" user="'.$current_user["User"]["id"].'"friend="'.$user['User']['id'].'" event="pending" onclick="friendRequest(this)">Pending</button>';
+                }
               }
             }
-          }
-        }?>
+          }?>
       </span>
 
     </td>

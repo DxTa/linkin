@@ -32,7 +32,7 @@ App::uses('Helper', 'View');
  */
 class AppHelper extends Helper {
 
-  public function search($array, $kvs) {
+  public function search($array, $kvs, $depth) {
     $results = array();
 
     if (is_array($array)) {
@@ -47,8 +47,10 @@ class AppHelper extends Helper {
           $results[] = $array;
       }
 
-      foreach ($array as $subarray)
-        $results = array_merge($results, $this->search($subarray, $kvs));
+      if ($depth > 0) {
+        foreach ($array as $subarray)
+          $results = array_merge($results, $this->search($subarray, $kvs, $depth -1));
+      }
     }
 
     return $results;
