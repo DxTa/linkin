@@ -39,8 +39,8 @@ class AppSchema extends CakeSchema {
               'email' => 'user'.$i.'@gmail.com',
               'sex' => 'male',
               'password' => '67a56683fbe216ea963cebe001d0e7dcae5b4a51',
-              'avatar' => 'http://lorempixel.com/600/600/people',
-              // 'avatar' => 'app/webroot/img/default_avatar.png', //for offline
+              // 'avatar' => 'http://lorempixel.com/600/600/people',
+              'avatar' => 'app/webroot/img/default_avatar.png', //for offline
               'active' => 1
               )
             )
@@ -70,10 +70,10 @@ class AppSchema extends CakeSchema {
                 'owner_id' => $i,
                 'category_id' => rand(1,10),
                 'description' => implode(' ',$faker->Lorem->sentences(2)),
-                'message' => implode(' ',$faker->Lorem->sentences(1)),
+                // 'message' => implode(' ',$faker->Lorem->sentences(1)),
                 'url' => $urls[rand(0,9)],
-                'image' => 'http://lorempixel.com/'.(rand(3,6)*50).'/'.(rand(3,6)*50).'/fashion'
-                // 'image' => 'app/webroot/img/channel/10.jpg' //for offline
+                // 'image' => 'http://lorempixel.com/'.(rand(3,6)*50).'/'.(rand(3,6)*50).'/fashion'
+                'image' => 'app/webroot/img/channel/10.jpg' //for offline
                 )
               )
             );
@@ -86,7 +86,7 @@ class AppSchema extends CakeSchema {
         $link = ClassRegistry::init('Link');
         for ($i=1; $i<=5; $i++) {
           for ($j=1;$j<=3;$j++) {
-            $link_id = rand(1,15);
+            $link_id = rand(1,13);
             $comment->create();
             $comment->save(
               array('Comment' => array(
@@ -138,7 +138,7 @@ class AppSchema extends CakeSchema {
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false),
     'friend_id' => array('type' => 'integer', 'null' => false),
-    'state' => array('type' => 'text', 'null' => false),
+    'state' => array('type' => 'text', 'null' => true),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
@@ -201,9 +201,8 @@ class AppSchema extends CakeSchema {
 
   public $user_link_sends = array(
     'id' => array('type' => 'integer', 'null' => false, 'auto_increment' => true, 'key' => 'primary'),
-    'send_id' => array('type' => 'integer', 'null' => false),
+    'user_id' => array('type' => 'integer', 'null' => false),
     'link_id' => array('type' => 'integer', 'null' => false),
-    'target_id' => array('type' => 'integer', 'null' => false),
     'created_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'updated_at' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
     'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1),

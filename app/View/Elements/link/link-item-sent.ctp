@@ -27,16 +27,16 @@
       <div class='link-meta'>
         <span class='user-info'>
           <strong>
-            <a href='/users/view/<?php echo $link['Owner']['id'] ?>' class='link-owner'>
-            <img src='<?php echo $link['Owner']['avatar'] ?>' >
-              <?php echo $link['Owner']['username'] ?>
+            <a href='/users/view/<?php echo $link['Link']['Owner']['id'] ?>' class='link-owner'>
+            <img src='<?php echo $link['Link']['Owner']['avatar'] ?>' >
+              <?php echo $link['Link']['Owner']['username'] ?>
             </a>
           </strong>
           send
         </span>
         <span class='seperator'>-</span>
         <span class='channel'>
-          <a href="<?php echo Router::url(array('controller' => 'categories', 'action' => 'view', $link['Category']['id'])) ?>"><?php echo $link['Category']['name'] ?></a>
+          <a href="<?php echo Router::url(array('controller' => 'categories', 'action' => 'view', $link['Link']['Category']['id'])) ?>"><?php echo $link['Link']['Category']['name'] ?></a>
         </span>
         <span class='seperator'>-</span>
         <span class='domain'>

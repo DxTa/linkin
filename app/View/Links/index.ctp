@@ -86,7 +86,6 @@
                       <?php echo $link['Link']['cnt_comments'] ?> Comments
                     </a>
                       ·
-                    <?php echo $this->Facebook->share(Router::url(array('controller' => 'links', 'action' => 'view', $link['Link']['id'])),array('style' => 'link','label' => 'Facebook this link')); ?>
                   </div>
                 </div>
               </div>
@@ -371,6 +370,26 @@ margin-top: 20px;
           $("#link_likes_"+ link_id).html(parseInt($("#link_likes_" + link_id).html()) +1);
         }
     });
+  }
+
+  var sendCreate = function(link_id,user_id) {
+    data = {
+      UserLinkSend: {
+        'link_id': link_id,
+          'user_id' : user_id
+      }
+    };
+    $.ajax({
+      url:'/UserLinkSends/make',
+        type:'post',
+        data: {data: data},
+        dataType : "json",
+        success: function(response, status) {
+          $("#link_" + link_id + " .link-stats").append(" · <span class='share-list'><a>Tin da loan</a></span>");
+          alert("Ban da loan tin");
+        }
+    });
+
   }
 
   </script>

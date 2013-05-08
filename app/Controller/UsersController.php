@@ -154,6 +154,23 @@ class UsersController extends AppController {
     $this->set('feeds', $feeds);
   }
 
+  function sent($id=null) {
+    if (!$id) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $user = $this->User->findById($id);
+    if (!$user) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $this->loadModel('Link');
+    $this->loadModel('UserLinkSend');
+    $lookup_ids = $this->Friendship->getFriendIds($id);
+    $sents =  $this->UserLinkSend->find('all',array('order' => array('UserLinkSend.updated_at DESC'),'conditions' => array('user_id' => $lookup_ids)));
+    $this->set('user',$user);
+    $this->set('sents',$sents);
+
+  }
+
   function view_friends($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid user'));
@@ -191,6 +208,7 @@ class UsersController extends AppController {
       $this->request->data = $user;
     }
   }
+
 
   function delete($id) {
     // check if admin

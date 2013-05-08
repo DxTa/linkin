@@ -144,6 +144,19 @@ class Link extends AppModel {
       'finderQuery' => '',
       'counterQuery' => ''
     ),
+    'UserLinkSend' => array(
+      'className' => 'UserLinkSend',
+      'foreignKey' => 'link_id',
+      'dependent' => false,
+      'conditions' => '',
+      'fields' => '',
+      'order' => 'UserLinkSend.updated_at DESC',
+      'limit' => '',
+      'offset' => '',
+      'exclusive' => '',
+      'finderQuery' => '',
+      'counterQuery' => ''
+    ),
     'Comment' => array(
       'className' => 'Comment',
       'foreignKey' => 'link_id',

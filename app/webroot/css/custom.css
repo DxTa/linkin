@@ -1269,3 +1269,13 @@ body {
   color: #c00607;
   margin: 0 2px 0 0;
 }
+
+.share-list {
+  background: #f6f6f6 url(../img/loantin_tail.jpg) no-repeat scroll 0 0;
+  color: #999;
+  padding: 3px 5px 3px 10px;
+}
+
+.share-list a {
+  color: #959595;
+}
