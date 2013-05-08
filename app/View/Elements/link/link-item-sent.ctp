@@ -57,7 +57,7 @@
           <?php echo $link['Link']['cnt_comments'] ?> Comments
         </a>
           ·
-        <?php if(!empty($link['UserLinkSend'])) : ?>
+        <?php if(!empty($link['UserLinkSend']) && $link['UserLinkSend']['user_id'] != $current_user['User']['id']) : ?>
         <a class='comment-count' href="javascript:{alert('Tin nay ban da loan')}" >Loan tin </a>
           ·
         <span class='share-list'><a> Tin da loan</a></span>

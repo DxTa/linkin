@@ -63,13 +63,13 @@
               <?php $check = false;break; ?>
             <?php endif ?>
           <?php endforeach ?>
-          <?php if(!empty($link['UserLinkSend']) && ($check == true))  : ?>
+          <?php if(!empty($link['UserLinkSend']) && !$check)  : ?>
           <a class='comment-count' href="javascript:{alert('Tin nay ban da loan')}" >Loan tin </a>
             ·
           <span class='share-list'><a> Tin da loan</a></span>
           <?php else :  ?>
 
-          <a class='comment-count' href='javascript:{void()}' onclick="sendCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)">Loan tin </a>
+          <a class='comment-count' href='javascript:{void(0)}' onclick="sendCreate(<?php echo $link['Link']['id'] ?>,<?php echo $current_user['User']['id'] ?>)">Loan tin </a>
           <?php endif ?>
         <?php endif ?>
       </div>
